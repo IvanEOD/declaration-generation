@@ -1,0 +1,332 @@
+enumCorrections:
+  classes:
+    - name: "EVerticalTextAligment"
+      newName: "VerticalTextAlignment"
+    - name: "EHorizTextAligment"
+      newName: "HorizontalTextAlignment"
+    - name: "ERayTracingGroupCullingPriority"
+      properties:
+        - name: "CP_0_NEVER_CULL"
+          newName: "NeverCull"
+        - name: "CP_1"
+          newName: "One"
+        - name: "CP_2"
+          newName: "Two"
+        - name: "CP_3"
+          newName: "Three"
+        - name: "CP_4_DEFAULT"
+          newName: "Default"
+        - name: "CP_5"
+          newName: "Five"
+        - name: "CP_6"
+          newName: "Six"
+        - name: "CP_7"
+          newName: "Seven"
+        - name: "CP_8_QUICKLY_CULL"
+          newName: "QuicklyCull"
+        - name: "CP_MAX"
+          newName: "Max"
+    - name: "EVirtualKeyboardDismissAction"
+      properties:
+        - name: "TextChangeOnDismiss"
+          newName: "ChangeOnDismiss"
+        - name: "TextCommitOnAccept"
+          newName: "CommitOnAccept"
+        - name: "TextCommitOnDismiss"
+          newName: "CommitOnDismiss"
+        - name: "EVirtualKeyboardDismissAction_MAX"
+          newName: "Max"
+    - name: "EOcclusionCombineMode"
+      properties:
+        - name: "OCM_Minimum"
+          newName: "Minimum"
+        - name: "OCM_Multiply"
+          newName: "Multiply"
+        - name: "OCM_MAX"
+          newName: "Max"
+    - name: "EARFrameSyncMode"
+      properties:
+        - name: "SyncTickWithCameraImage"
+          newName: "WithCameraImage"
+        - name: "SyncTickWithoutCameraImage"
+          newName: "WithoutCameraImage"
+        - name: "EARFrameSyncMode_MAX"
+          newName: "Max"
+    - name: "EOcclusionTriangleSamplingUIMode"
+      properties:
+        - name: "Vertices"
+          newName: "Vertices"
+        - name: "VerticesAndCentroids"
+          newName: "VerticesAndCentroids"
+        - name: "EOcclusionTriangleSamplingUIMode_MAX"
+          newName: "Max"
+    - name: "EComparisonMethod"
+      properties:
+        - name: "Equal_To"
+          newName: "EqualTo"
+        - name: "Not_Equal_To"
+          newName: "NotEqualTo"
+        - name: "Greater_Than_Or_Equal_To"
+          newName: "GreaterThanOrEqualTo"
+        - name: "Less_Than_Or_Equal_To"
+          newName: "LessThanOrEqualTo"
+        - name: "Greater_Than"
+          newName: "GreaterThan"
+        - name: "Less_Than"
+          newName: "LessThan"
+        - name: "EComparisonMethod_MAX"
+          newName: "Max"
+    - name: "ESpritePivotMode"
+      properties:
+        - name: "Top_Left"
+          newName: "TopLeft"
+        - name: "Top_Center"
+          newName: "TopCenter"
+        - name: "Top_Right"
+          newName: "TopRight"
+        - name: "Center_Left"
+          newName: "CenterLeft"
+        - name: "Center_Center"
+          newName: "CenterCenter"
+        - name: "Center_Right"
+          newName: "CenterRight"
+        - name: "Bottom_Left"
+          newName: "BottomLeft"
+        - name: "Bottom_Center"
+          newName: "BottomCenter"
+        - name: "Bottom_Right"
+          newName: "BottomRight"
+        - name: "Custom"
+          newName: "Custom"
+        - name: "ESpritePivotMode_MAX"
+          newName: "Max"
+    - name: "EAllowEditsMode"
+      properties:
+        - name: "AllEdits"
+          newName: "Edits"
+        - name: "AllowSequenceEditsOnly"
+          newName: "SequencerEditsOnly"
+        - name: "AllowLevelEditsOnly"
+          newName: "LevelEditsOnly"
+        - name: "EAllowEditsMode_MAX"
+          newName: "Max"
+    - name: "EMeshScreenAlignment"
+      properties:
+        - name: "PSMA_MeshFaceCameraWithRoll"
+          newName: "MeshFaceCameraWithRoll"
+        - name: "PSMA_MeshFaceCameraWithSpin"
+          newName: "MeshFaceCameraWithSpin"
+        - name: "PSMA_MeshFaceCameraWithLockedAxis"
+          newName: "MeshFaceCameraWithLockedAxis"
+        - name: "PSMA_MAX"
+          newName: "Max"
+
+nonClassMemberCorrections:
+  typeAliasRenames: {
+    "timeout_handle": "TimeoutHandle"
+  }
+  propertyRenames: {
+    "process": "GProcess",
+    "memory": "GMemory"
+  }
+
+standardCorrections:
+  commonPrefixReplacements: {
+    "NotEqual_": "notEqual",
+    "Multiply_": "multiply",
+    "Divide_": "divide",
+    "Add_": "add",
+    "Subtract_": "subtract",
+    "Conv_": "convert",
+    "PointerEvent_": "",
+  }
+  ignoreFunctions: ["ToString"]
+  ignoreProperties: []
+  allMemberFunctions:
+    - name: "C"
+      newName: "copy"
+  allMemberProperties:
+    - name: "$"
+      newName: "value"
+  allMembers:
+  classes:
+    - name: "KotlinObject"
+      newName: "InternalKotlinObject"
+
+    - name: "NavigationEvent"
+      functions:
+        - name: "clone"
+          shouldOverride: true
+
+    - name: "UPointerEvent"
+      functions:
+        - name: "clone"
+          shouldOverride: true
+
+    - name: "KeyEvent"
+      functions:
+        - name: "clone"
+          shouldOverride: true
+
+    - name: "MotionEvent"
+      functions:
+        - name: "clone"
+          shouldOverride: true
+
+    - name: "CharacterEvent"
+      functions:
+        - name: "clone"
+          shouldOverride: true
+
+    - name: "InterchangeBaseNode"
+      functions:
+        - name: "GetUniqueId"
+          shouldOverride: true
+
+    - name: "TextBlock"
+      functions:
+        - name: "bAutoWrapText"
+          shouldOverride: true
+
+    - name: "LogVisualizerSettings"
+      members:
+        - name: "bPersistentFilters"
+          newName: "usePersistentFilters"
+
+    - name: "LightComponentBase"
+      members:
+        - name: "bCastRaytracedShadow"
+          newName: "isCastRaytracedShadow"
+
+    - name: "StaticMeshLightingInfo"
+      members:
+        - name: "bTextureMapping"
+          newName: "useTextureMapping"
+
+    - name: "RendererSettings"
+      members:
+        - name: "bDefaultFeatureAutoExposure"
+          newName: "useDefaultFeatureAutoExposure"
+
+    - name: "NiagaraMeshRendererProperties"
+      members:
+        - name: "bOverrideMaterials"
+          newName: "isOverrideMaterials"
+
+    - name: "NiagaraSimulationStageGeneric"
+      members:
+        - name: "bOverrideGpuDispatchNumThreads"
+          newName: "isOverrideGpuDispatchNumThreads"
+
+    - name: "NiagaraEmitter"
+      members:
+        - name: "bFixedBounds"
+          newName: "isFixedBounds"
+
+    - name: "NiagaraSystem"
+      members:
+        - name: "bFixedBounds"
+          newName: "isFixedBounds"
+
+    - name: "NiagaraSystem"
+      members:
+        - name: "bFixedBounds"
+          newName: "isFixedBounds"
+
+    - name: "AnimNodeLookAt"
+      members:
+        - name: "LookUpAxis"
+          newName: "lookUpAxisString"
+        - name: "LookAtAxis"
+          newName: "lookAtAxisString"
+
+    - name: "AnimNodeRigidBody"
+      members:
+        - name: "bOverrideWorldGravity"
+          newName: "isOverrideWorldGravity"
+
+unnamedClasses:
+  classes:
+    - name: "T$0"
+      newName: "GuidProvider"
+    - name: "T$1"
+      newName: "InitialSeedProvider"
+    - name: "T$2"
+      newName: "RandomStreamProvider"
+    - name: "T$3"
+      newName: "RotationProvider"
+    - name: "T$4"
+      newName: "AxesProvider"
+    - name: "T$5"
+      newName: "OrientationAndPositionProvider"
+    - name: "T$6"
+      newName: "SpringStateProvider"
+    - name: "T$9"
+      newName: "QuatProvider"
+      properties:
+        - name: "Q"
+          newName: "quat"
+    - name: "T$11"
+      newName: "Vector4ComponentsProvider"
+    - name: "T$12"
+      newName: "Vector4Provider"
+      properties:
+        - name: "A"
+          newName: "vector4"
+    - name: "T$14"
+      newName: "MatrixProvider"
+      properties:
+        - name: "M"
+          newName: "matrix"
+    - name: "T$49"
+      newName: "StringResultProvider"
+    - name: "T$83"
+      newName: "AnimPoseProvider"
+    - name: "T$91"
+      newName: "TransformProvider"
+    - name: "T$125"
+      newName: "AnimBoneCompressionSettingsProvider"
+    - name: "T$126"
+      newName: "AnimBoneCompressionCurveProvider"
+    - name: "T$143"
+      newName: "MetaDataProvider"
+    - name: "T$144"
+      newName: "MetaDataOfClassProvider"
+    - name: "T$150"
+      newName: "OutAnimPoseProvider"
+    - name: "T$180"
+      newName: "SkeletalMeshOutBuildOptionsProvider"
+    - name: "T$240"
+      newName: "MeshOutBuildOptionsProvider"
+    - name: "T$291"
+      newName: "AnyParameterNamesProvider"
+    - name: "T$414"
+      newName: "UnrealEngineClassesResultProvider"
+    - name: "T$497"
+      newName: "StringArrayProvider"
+    - name: "T$525"
+      newName: "JavascriptConnectionParamsProvider"
+    - name: "T$722"
+      newName: "NumberValueProvider"
+      properties:
+        - name: "value"
+          newName: "numberValue"
+        - name: "Value"
+          newName: "numberValue"
+        - name: "$"
+          newName: "value"
+    - name: "T$726"
+      newName: "OutPathValueProvider"
+    - name: "T$728"
+      newName: "AnyResultProvider"
+    - name: "T$729"
+      newName: "NumberArrayResultProvider"
+    - name: "T$743"
+      newName: "InputAxisKeyMappingOutProvider"
+    - name: "T$745"
+      newName: "InputActionKeyMappingOutProvider"
+    - name: "T$832"
+      newName: "ControlRigControlOutPoseProvider"
+
+
+

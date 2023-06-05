@@ -1,0 +1,18 @@
+enumCorrections:
+  classes: []
+
+nonClassMemberCorrections:
+  typeAliasRenames: {}
+  propertyRenames: {}
+
+standardCorrections:
+  commonPrefixReplacements: {}
+  ignoreFunctions: []
+  ignoreProperties: []
+  allMemberFunctions: []
+  allMemberProperties: []
+  allMembers: []
+  classes: []
+
+unnamedClasses:
+  classes: []
