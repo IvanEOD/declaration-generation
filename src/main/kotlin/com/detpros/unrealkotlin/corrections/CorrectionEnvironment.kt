@@ -15,10 +15,11 @@ class CorrectionEnvironment(
     private val declarations: PackageDeclaration,
     private val configuration: CorrectionConfiguration
 ) {
+
     val enumCorrections = EnumCorrections(this, configuration.enumCorrections)
-    val nonClassMemberFileCorrections = NonClassMemberFileCorrections(this)
-    val unnamedClassCorrections = UnnamedClassCorrections(this)
-    val standardCorrections = StandardCorrections(this)
+    val nonClassMemberFileCorrections = NonClassMemberFileCorrections(this, configuration.nonClassMemberCorrections)
+    val unnamedClassCorrections = UnnamedClassCorrections(this, configuration.standardCorrections, configuration.unnamedClasses)
+    val standardCorrections = StandardCorrections(this, configuration.standardCorrections)
 
     internal val genericsMap = mutableMapOf<GenericClass, MutableSet<ClassDeclaration>>()
 

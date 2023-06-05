@@ -15,6 +15,10 @@ class NonClassMemberFileCorrections(
     override val environment: CorrectionEnvironment,
     private val configuration: NonClassMemberCorrectionsConfiguration,
 ) : Corrections() {
+
+    private val typeAliasRenames by lazy { configuration.typeAliasRenames() }
+    private val propertyRenames by lazy { configuration.propertyRenames() }
+
     override fun correct(files: Set<FileDeclaration>) {
         val allMembers = files.flatMap { it.members }
         val allProperties = allMembers.filterIsInstance<PropertyDeclaration>()
@@ -22,7 +26,9 @@ class NonClassMemberFileCorrections(
         val allTypeAliases = allMembers.filterIsInstance<TypeAliasDeclaration>()
 
         allTypeAliases.forEach {
-            if (it.name == "timeout_handle") it.rename("TimeoutHandle")
+            val newName = typeAliasRenames[it.name]
+            if (newName != null) it.rename(newName)
+//            if (it.name == "timeout_handle") it.rename("TimeoutHandle")
             it.lockRenaming()
             environment.addFileNonClass(it)
         }
@@ -41,8 +47,10 @@ class NonClassMemberFileCorrections(
         }
 
         allProperties.forEach {
-            if (it.name == "process") it.rename("GProcess")
-            if (it.name == "memory") it.rename("GMemory")
+            val newName = propertyRenames[it.name]
+            if (newName != null) it.rename(newName)
+//            if (it.name == "process") it.rename("GProcess")
+//            if (it.name == "memory") it.rename("GMemory")
             if (it.name != "Root" && it.type.toString() != "dynamic") {
                 environment.addFileNonClass(it)
             }
@@ -50,4 +58,9 @@ class NonClassMemberFileCorrections(
         }
 
     }
+
+    companion object {
+        private val defaults by lazy { NonClassMemberCorrectionsConfiguration.Default }
+    }
+
 }

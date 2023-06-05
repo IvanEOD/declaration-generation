@@ -17,6 +17,15 @@ class StandardCorrections(
     private val processed = mutableSetOf<Declaration>()
     private fun isProcessed(declaration: Declaration) = !processed.add(declaration) || environment.isIgnore(declaration)
 
+    private val definedClassRenames by lazy { configuration.definedClassRenames() }
+    private val addOverrides by lazy { configuration.getAddOverrides() }
+    private val ignoreFunctionNames by lazy { configuration.ignoreFunctionNames() }
+    private val ignorePropertyNames by lazy { configuration.ignorePropertyNames() }
+    private val commonPrefixRenames by lazy { configuration.commonPrefixReplacements() }
+    private val definedMemberRenames by lazy { configuration.definedMemberRenames() }
+    private val renameMemberProperties by lazy { configuration.definedPropertyRenames() }
+    private val renameMemberFunctions by lazy { configuration.definedFunctionRenames() }
+
     fun internalCorrect(parent: Declaration? = null, declarations: Set<Declaration>) {
         declarations.forEach {
             when (it) {
@@ -134,67 +143,72 @@ class StandardCorrections(
             if (acc.startsWith(prefix)) acc.replaceFirst(prefix, replacement) else acc
         }
 
+
+
+
     companion object {
-
-        val definedClassRenames = mapOf(
-            "KotlinObject" to "InternalKotlinObject"
-        )
-
-        val addOverrides = mapOf(
-            "NavigationEvent" to setOf("clone"),
-            "UPointerEvent" to setOf("clone"),
-            "KeyEvent" to setOf("clone"),
-            "MotionEvent" to setOf("clone"),
-            "CharacterEvent" to setOf("clone"),
-            "InterchangeBaseNode" to setOf("GetUniqueID"),
-            "TextBlock" to setOf("bAutoWrapText"),
-        )
-
-        val ignoreFunctionNames = mutableSetOf(
-            "ToString"
-        )
-        val ignorePropertyNames = mutableSetOf<String>(
-
-        )
-
-        val renameMemberProperties = mutableMapOf(
-            "$" to "value"
-        )
-
-        val renameMemberFunctions = mutableMapOf(
-            "C" to "new"
-        )
-
-        val commonPrefixRenames = mapOf(
-            "NotEqual_" to "notEqual",
-            "Multiply_" to "multiply",
-            "EqualEqual_" to "isEqualTo",
-            "Add_" to "plus",
-            "Conv_" to "convert",
-            "Divide_" to "divide",
-            "Subtract_" to "minus",
-            "PointerEvent_" to "",
-        )
-
-        val logVisualizerSettings = mapOf(
-            "bPersistentFilters" to "usePersistentFilters"
-        )
-        val lightComponentBase= mapOf(
-            "bCastRaytracedShadow" to "isCastRaytracedShadow",
-        )
-
-        val definedMemberRenames = mapOf(
-            "LogVisualizerSettings" to logVisualizerSettings,
-            "LightComponentBase" to lightComponentBase,
-            "StaticMeshLightingInfo" to mapOf("bTextureMapping" to "useTextureMapping"),
-            "RendererSettings" to mapOf("bDefaultFeatureAutoExposure" to "useDefaultFeatureAutoExposure"),
-            "NiagaraMeshRendererProperties" to mapOf("bOverrideMaterials" to "isOverrideMaterials"),
-            "NiagaraSimulationStageGeneric" to mapOf("bOverrideGpuDispatchNumThreads" to "isOverrideGpuDispatchNumThreads"),
-            "NiagaraEmitter" to mapOf("bFixedBounds" to "isFixedBounds"),
-            "NiagaraSystem" to mapOf("bFixedBounds" to "isFixedBounds"),
-            "AnimNodeLookAt" to mapOf("LookUpAxis" to "lookUpAxisString", "LookAtAxis" to "lookAtAxisString"),
-            "AnimNodeRigidBody" to mapOf("bOverrideWorldGravity" to "isOverrideWorldGravity"),
-        )
+        private val defaults by lazy { StandardCorrectionsConfiguration.Default }
+//
+//
+//        val definedClassRenames = mapOf(
+//            "KotlinObject" to "InternalKotlinObject"
+//        )
+//
+//        val addOverrides = mapOf(
+//            "NavigationEvent" to setOf("clone"),
+//            "UPointerEvent" to setOf("clone"),
+//            "KeyEvent" to setOf("clone"),
+//            "MotionEvent" to setOf("clone"),
+//            "CharacterEvent" to setOf("clone"),
+//            "InterchangeBaseNode" to setOf("GetUniqueID"),
+//            "TextBlock" to setOf("bAutoWrapText"),
+//        )
+//
+//        val ignoreFunctionNames = mutableSetOf(
+//            "ToString"
+//        )
+//        val ignorePropertyNames = mutableSetOf<String>(
+//
+//        )
+//
+//        val renameMemberProperties = mutableMapOf(
+//            "$" to "value"
+//        )
+//
+//        val renameMemberFunctions = mutableMapOf(
+//            "C" to "new"
+//        )
+//
+//        val commonPrefixRenames = mapOf(
+//            "NotEqual_" to "notEqual",
+//            "Multiply_" to "multiply",
+//            "EqualEqual_" to "isEqualTo",
+//            "Add_" to "plus",
+//            "Conv_" to "convert",
+//            "Divide_" to "divide",
+//            "Subtract_" to "minus",
+//            "PointerEvent_" to "",
+//        )
+//
+//        val logVisualizerSettings = mapOf(
+//            "bPersistentFilters" to "usePersistentFilters"
+//        )
+//        val lightComponentBase= mapOf(
+//            "bCastRaytracedShadow" to "isCastRaytracedShadow",
+//        )
+//
+//        val definedMemberRenames = mapOf(
+//            "LogVisualizerSettings" to logVisualizerSettings,
+//            "LightComponentBase" to lightComponentBase,
+//            "StaticMeshLightingInfo" to mapOf("bTextureMapping" to "useTextureMapping"),
+//            "RendererSettings" to mapOf("bDefaultFeatureAutoExposure" to "useDefaultFeatureAutoExposure"),
+//            "NiagaraMeshRendererProperties" to mapOf("bOverrideMaterials" to "isOverrideMaterials"),
+//            "NiagaraSimulationStageGeneric" to mapOf("bOverrideGpuDispatchNumThreads" to "isOverrideGpuDispatchNumThreads"),
+//            "NiagaraEmitter" to mapOf("bFixedBounds" to "isFixedBounds"),
+//            "NiagaraSystem" to mapOf("bFixedBounds" to "isFixedBounds"),
+//            "AnimNodeLookAt" to mapOf("LookUpAxis" to "lookUpAxisString", "LookAtAxis" to "lookAtAxisString"),
+//            "AnimNodeRigidBody" to mapOf("bOverrideWorldGravity" to "isOverrideWorldGravity"),
+//        )
 
     }
 

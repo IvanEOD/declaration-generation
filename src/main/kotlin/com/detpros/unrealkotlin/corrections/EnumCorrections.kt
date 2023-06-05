@@ -15,6 +15,9 @@ class EnumCorrections(
     private val entryRenames = mutableMapOf<String, MutableMap<String, String>>()
     private val counter = AtomicInteger(0)
 
+    private val enumClassRenames by lazy { configuration.definedClassRenames() }
+    private val entries by lazy { configuration.definedMemberRenames() }
+
     override fun correct(files: Set<FileDeclaration>) {
         doFirst()
 
@@ -74,9 +77,7 @@ class EnumCorrections(
             return returnMap
         }
         val notMaxMax = declaration.properties.find { it.name.startsWith(declaration.name.removePrefix("E")) && it.name.endsWith("_MAX") }
-
-        val maxProperty =
-            declaration.properties.find { it.name.startsWith(declaration.originalName) && it.name.endsWith("_MAX") }
+        val maxProperty = declaration.properties.find { it.name.startsWith(declaration.originalName) && it.name.endsWith("_MAX") }
         val existingMaxProperty = declaration.properties.find { it.name == "Max" || it.name.endsWith("_Max") }
 
         val commonPrefix = declaration.properties.filter { it != maxProperty && it != existingMaxProperty }
@@ -143,11 +144,14 @@ class EnumCorrections(
 
 
     companion object {
-        private val enumClassRenames = mapOf(
-            "EVerticalTextAligment" to "VerticalTextAlignment",
-            "EHorizTextAligment" to "HorizontalTextAlignment",
+        private val defaults by lazy { EnumCorrectionsConfiguration.Default }
 
-        )
+//
+//        private val enumClassRenames = mapOf(
+//            "EVerticalTextAligment" to "VerticalTextAlignment",
+//            "EHorizTextAligment" to "HorizontalTextAlignment",
+//
+//        )
         private val rayTracingGroupCullingPriorities = mapOf(
             "CP_0_NEVER_CULL" to "NeverCull",
             "CP_1" to "One",
@@ -215,17 +219,20 @@ class EnumCorrections(
             "AllowLevelEditsOnly" to "LevelEditsOnly",
             "EAllowEditsMode_MAX" to "Max",
         )
-        private val entries = mapOf(
-            "ERayTracingGroupCullingPriority" to rayTracingGroupCullingPriorities,
-            "EVirtualKeyboardDismissAction" to virtualKeyboardDismissAction,
-            "EOcclusionCombineMode" to occlusionCombineMode,
-            "EARFrameSyncMode" to earFrameSyncMode,
-            "EOcclusionTriangleSamplingUIMode" to occlusionTriangleSamplingUIMode,
-            "EComparisonMethod" to comparisonMethodEntries,
-            "ESpritePivotMode" to spritePivotModeEntries,
-            "EAllowEditsMode" to allowEditsMode,
-            "EMeshScreenAlignment" to meshScreenAlignment,
-        )
+
+
+
+//        private val entries = mapOf(
+//            "ERayTracingGroupCullingPriority" to rayTracingGroupCullingPriorities,
+//            "EVirtualKeyboardDismissAction" to virtualKeyboardDismissAction,
+//            "EOcclusionCombineMode" to occlusionCombineMode,
+//            "EARFrameSyncMode" to earFrameSyncMode,
+//            "EOcclusionTriangleSamplingUIMode" to occlusionTriangleSamplingUIMode,
+//            "EComparisonMethod" to comparisonMethodEntries,
+//            "ESpritePivotMode" to spritePivotModeEntries,
+//            "EAllowEditsMode" to allowEditsMode,
+//            "EMeshScreenAlignment" to meshScreenAlignment,
+//        )
         val unrealEnumTypeNames = setOf(
             "HorizontalTextAlignment",
             "VerticalTextAlignment",
