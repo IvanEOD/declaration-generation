@@ -18,7 +18,11 @@ data class CorrectionConfiguration(
     val nonClassMemberCorrections: NonClassMemberCorrectionsConfiguration = NonClassMemberCorrectionsConfiguration(),
     val standardCorrections: StandardCorrectionsConfiguration = StandardCorrectionsConfiguration(),
     val unnamedClasses: UnnamedClassesConfiguration = UnnamedClassesConfiguration()
-) {
+): ClassConfigurationsProvider {
+
+    override fun classConfigurations(): List<ClassCorrectionConfiguration> =
+        enumCorrections.classConfigurations() +
+        unnamedClasses.classConfigurations()
 
     operator fun plus(other: CorrectionConfiguration) =
         CorrectionConfiguration(
@@ -168,6 +172,7 @@ interface ClassConfigurationsProvider  {
     fun definedClassRenames() = classConfigurations()
         .filter { it.newName != null }
         .associate { it.name to it.newName!! }
+
     fun definedMemberRenames(): Map<String, Map<String, String>> = classConfigurations()
         .filter { it.members.isNotEmpty() && it.members.any { member -> member.newName != null } }
         .associate {
@@ -197,6 +202,7 @@ data class ClassCorrectionConfiguration(
     val name: String = "",
     val newName: String? = null,
     val superType: String? = null,
+    val delete: Boolean = false,
     val removeSuperTypes: List<String> = emptyList(),
     val addSuperTypes: List<String> = emptyList(),
     val members: List<MemberCorrectionConfiguration> = emptyList(),

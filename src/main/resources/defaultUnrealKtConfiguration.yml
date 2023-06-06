@@ -306,6 +306,11 @@ unnamedClasses:
       newName: "StringArrayProvider"
     - name: "T$525"
       newName: "JavascriptConnectionParamsProvider"
+    - name: "T$671"
+      newName: "AudioParamsProvider"
+      members:
+        - name: "Params"
+          newName: "params"
     - name: "T$722"
       newName: "NumberValueProvider"
       properties:
@@ -328,5 +333,5 @@ unnamedClasses:
     - name: "T$832"
       newName: "ControlRigControlOutPoseProvider"
 
-
-
+    - name: "T$719"
+      delete: true

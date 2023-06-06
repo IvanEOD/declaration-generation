@@ -90,6 +90,8 @@ class CorrectionEnvironment(
     fun process() {
         addEventListenerObject()
 
+
+
         enumCorrections.correct(declarations.files)
         nonClassMemberFileCorrections.correct(declarations.files)
         unnamedClassCorrections.correct(declarations.files)
@@ -194,6 +196,12 @@ class CorrectionEnvironment(
                     function.removeModifier(KModifier.OVERRIDE)
                 }
             }
+
+        val deleteClassNames = configuration.classConfigurations().filter { it.delete }.map { it.name }
+        val deleteClasses = files.flatMap { it.classes }.filter { it.name in deleteClassNames }.toList()
+        files.forEach { file ->
+            deleteClasses.forEach { file.removeClass(it) }
+        }
 
         writeFiles(sourceDestination)
 //
