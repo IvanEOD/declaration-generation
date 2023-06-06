@@ -62,12 +62,12 @@ class UnnamedClassCorrections(
                 }
                 if (definedName == null) definedName = first.name.replace("T$", "Object")
 
-                classes.forEach { klass ->
+                classes.forEach klassForEach@ { klass ->
                     klass.rename(definedName)
                     klass.lockRenaming()
                     if (klass != first) {
                         environment.addIgnoreClass(klass)
-                        return@forEach
+                        return@klassForEach
                     }
                     val memberCorrections = definedMemberRenames[definedName] ?: mapOf()
 
