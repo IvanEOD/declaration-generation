@@ -198,7 +198,7 @@ class CorrectionEnvironment(
             }
 
         val deleteClassNames = configuration.classConfigurations().filter { it.delete }.map { it.name }
-        val deleteClasses = files.flatMap { it.classes }.filter { it.name in deleteClassNames }.toList()
+        val deleteClasses = files.flatMap { it.classes }.filter { it.originalName in deleteClassNames }.toList()
         files.forEach { file ->
             deleteClasses.forEach { file.removeClass(it) }
         }
