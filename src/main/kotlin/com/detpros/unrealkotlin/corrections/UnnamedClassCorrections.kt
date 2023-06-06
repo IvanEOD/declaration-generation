@@ -170,13 +170,11 @@ class UnnamedClassCorrections(
 //            "T$745" to "InputActionKeyMappingOutProvider",
 //            "T$832" to "ControlRigControlOutPoseProvider",
 //        )
-//
 //        private val numberValueProvider = mapOf(
 //            "value" to "numberValue",
 //            "Value" to "numberValue",
 //            "$" to "value"
 //        )
-//
 //        private val definedMemberRenames = mutableMapOf(
 //            "MatrixProvider" to mutableMapOf("M" to "matrix"),
 //            "Vector4Provider" to mutableMapOf("A" to "vector4"),
