@@ -43,7 +43,7 @@ internal class ClassNameDeclarationImpl(
         if (_className == null) {
             val name = _simpleNames.last()
             val finalName = getUpdatedName(name)
-            if (finalName != name) rename(finalName)
+            if (finalName != name) rename("toTypeName", finalName)
             _className = ClassName(_packageName, _simpleNames).copy(
                 nullable = nullable,
                 annotations = annotations.map(AnnotationDeclaration::toAnnotationSpec),
@@ -62,7 +62,7 @@ internal class ClassNameDeclarationImpl(
         renameable = false
     }
 
-    override fun rename(name: String) {
+    override fun rename(caller: String, name: String) {
         if (!renameable) return
         if (name.contains(",") || name.contains(" ")) throw IllegalArgumentException("Name cannot contain ',' or ' '.... : $name")
         val oldName = simpleNames.last()
@@ -95,7 +95,7 @@ internal class ClassNameDeclarationImpl(
         fun renameClass(oldName: String, newName: String, lock: Boolean = false) {
             renameData[oldName] = newName
             classNames.values.asSequence().filter { it.simpleName == oldName }.forEach {
-                it.rename(newName)
+                it.rename("renameClass", newName)
                 if (lock) (it as ClassNameDeclarationImpl).lockRenaming()
             }
         }

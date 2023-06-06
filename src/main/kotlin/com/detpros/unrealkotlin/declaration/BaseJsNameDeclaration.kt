@@ -34,7 +34,7 @@ internal sealed class BaseJsNameDeclaration : ParentDeclaration(), DeclarationWi
         if (isJsNameAllowed) _annotations.add(AnnotationDeclaration.jsName(name))
     }
 
-    override fun rename(name: String) {
+    override fun rename(caller: String, name: String) {
         if (isRenamingLocked) return
         val oldName = _name
         _name = name

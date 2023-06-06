@@ -17,7 +17,7 @@ sealed interface ClassNameDeclaration : TypeNameDeclaration, DeclarationWithAnno
     val simpleNames: List<String>
     val simpleName: String
 
-    fun rename(name: String)
+    fun rename(caller: String, name: String)
     fun setPackage(name: String)
 
     fun isSameAs(other: ClassNameDeclaration): Boolean

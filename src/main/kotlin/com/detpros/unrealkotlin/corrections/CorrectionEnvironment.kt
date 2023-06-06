@@ -2,6 +2,7 @@ package com.detpros.unrealkotlin.corrections
 
 import com.detpros.unrealkotlin.declaration.*
 import com.detpros.unrealkotlin.utility.GenericClass
+import com.detpros.unrealkotlin.utility.joinNames
 import com.detpros.unrealkotlin.utility.kotlinUE5Text
 import com.detpros.unrealkotlin.utility.toMemberLevel
 import com.squareup.kotlinpoet.ClassName
@@ -124,11 +125,11 @@ class CorrectionEnvironment(
                     }
                     is TypeAliasDeclaration -> {}
                     is ParameterDeclaration -> {
-                        if (it.name == "fn") it.rename("function")
+                        if (it.name == "fn") it.rename("mainParameterDeclaration", "function")
                         val lowered = it.name.toMemberLevel()
                         if (lowered != it.name) {
                             if (it.isRenamingLocked) it.unlockRenaming()
-                            it.rename(lowered)
+                            it.rename("mainParameterDeclarationLowering", lowered)
                             it.lockRenaming()
                         }
                     }
@@ -157,7 +158,7 @@ class CorrectionEnvironment(
                 for (name in matchingNames) {
                     val booleanProperty = klass.properties.find { it.name == name && it.type.isName("Boolean") } ?: continue
                     if (booleanProperty.isRenamingLocked) booleanProperty.unlockRenaming()
-                    booleanProperty.rename("is" + name.capitalizeFirst())
+                    booleanProperty.rename("", "is" + name.capitalizeFirst())
                     booleanProperty.lockRenaming()
                 }
             }
@@ -176,9 +177,10 @@ class CorrectionEnvironment(
         sharedNames.filter { it.value.size > 1 }.forEach { (name, classes) ->
             classes.forEach { klass ->
                 klass.properties.firstOrNull()?.let { first ->
-                    val newName = name.trim() + first.type.allNames().joinToString().trim() + "Provider"
+                    val newName = (listOf(name.trim()) +  first.type.allNames())
+                        .joinNames { !it.equals("kotlin", true) && !it.equals("js") } + "Provider"
                     klass.unlockRenaming()
-                    klass.rename(newName)
+                    klass.rename("sharedName", newName)
                     klass.lockRenaming()
                 }
             }

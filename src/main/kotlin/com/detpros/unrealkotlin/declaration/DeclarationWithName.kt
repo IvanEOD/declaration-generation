@@ -15,7 +15,7 @@ sealed interface DeclarationWithName : Declaration, Comparable<DeclarationWithNa
     fun unlockRenaming()
     val isRenamingLocked: Boolean
 
-    fun rename(name: String)
+    fun rename(caller: String, name: String)
 
     val isTopLevel: Boolean get() = false
 

@@ -235,9 +235,9 @@ internal class ClassDeclarationImpl(
 
     private var _typeSpec: TypeSpec? = null
 
-    override fun rename(name: String) {
-        _thisClassName.rename(name)
-        super.rename(name)
+    override fun rename(caller: String, name: String) {
+        _thisClassName.rename(caller, name)
+        super.rename(caller, name)
 
     }
 

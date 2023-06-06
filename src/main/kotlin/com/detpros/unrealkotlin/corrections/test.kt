@@ -15,6 +15,7 @@ lateinit var context: ParsingContext
 
 
 fun main() {
+
     val sourceDir = File("C:\\Users\\ivanc\\OneDrive\\Desktop\\unreal-kotlin\\build\\.unreal-kotlin\\generated\\dukat")
     val sourceFiles = sourceDir.listFiles()!!.filter { it.extension == "kt" }.toSet()
     val outputDirectory = File("src/main/resources")
@@ -37,7 +38,7 @@ fun main() {
     val environment = CorrectionEnvironment(outputDirectory, packageContext, CorrectionConfiguration.Default)
     environment.process()
 
-
+    
 }
 
 abstract class FileReformatProcessor {
