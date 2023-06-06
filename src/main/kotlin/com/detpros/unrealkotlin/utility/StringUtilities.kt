@@ -76,6 +76,11 @@ fun String.toNumbersString(): String {
     }
 }
 
+fun String.removeNonAlphaNumeric(): String = this.replace(Regex("[^A-Za-z0-9]"), "")
+fun Collection<String>.joinNames(filter: (String) -> Boolean): String = this.map(String::trim)
+    .filter(filter)
+    .joinToString("") { it.removeNonAlphaNumeric() }
+
 private val numberToNamesMap = mapOf(
     "0" to "Zero",
     "1" to "One",

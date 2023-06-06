@@ -40,7 +40,11 @@ sealed interface ParsingEnvironment : Disposable {
         fun contextFor(sources: Set<File>): ParsingContext = sourceContexts.getOrPut(sources) { ParsingContext() }
 
 
-        fun withSources(sources: Set<File>, context: ParsingContext = contextFor(sources), block: ParsingEnvironment.() -> Unit) {
+        fun withSources(
+            sources: Set<File>,
+            context: ParsingContext = contextFor(sources),
+            block: ParsingEnvironment.() -> Unit
+        ) {
             val instance = instances.getOrPut(sources.joinToString("/") { it.nameWithoutExtension })  {
                 ParsingEnvironmentImpl(sources, context)
             }

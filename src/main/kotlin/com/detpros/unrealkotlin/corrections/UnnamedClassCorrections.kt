@@ -2,6 +2,7 @@ package com.detpros.unrealkotlin.corrections
 
 
 import com.detpros.unrealkotlin.declaration.*
+import com.detpros.unrealkotlin.utility.joinNames
 import com.detpros.unrealkotlin.utility.toMemberLevel
 import com.detpros.unrealkotlin.utility.toTopLevel
 
@@ -42,15 +43,12 @@ class UnnamedClassCorrections(
                         break
                     }
                 }
-                if (definedName != null) {
-
-                }
                 val first = classes.first()
                 if (definedName == null && first.properties.size == 1) {
                     val property = first.properties.first()
                     val propertyName = property.name
                     val propertyType = property.type
-                    val typeName = propertyType.allNames().filter { it != "kotlin" }.joinToString("")
+                    val typeName = propertyType.allNames().joinNames { !it.equals("kotlin", true) && !it.equals("js", true) }
                     val propertyNameLength = propertyName.length
                     val providerName =
                         (if (propertyNameLength == 1) typeName else propertyName.toTopLevel()) + "Provider"
@@ -119,6 +117,8 @@ class UnnamedClassCorrections(
             }
         }
     }
+
+
 
     private fun String.replaceAnyCommonPrefixes(): String =
         commonPrefixReplacements.entries.fold(this) { acc, (prefix, replacement) ->
