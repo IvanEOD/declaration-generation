@@ -178,7 +178,7 @@ class CorrectionEnvironment(
             classes.forEach { klass ->
                 klass.properties.firstOrNull()?.let { first ->
                     val newName = (listOf(name.trim()) +  first.type.allNames())
-                        .joinNames { !it.equals("kotlin", true) && !it.equals("js") } + "Provider"
+                        .joinNames { !it.equals("kotlin", true) && !it.equals("js", true) } + "Provider"
                     klass.unlockRenaming()
                     klass.rename("sharedName", newName)
                     klass.lockRenaming()
