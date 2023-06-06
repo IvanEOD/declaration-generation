@@ -2114,15 +2114,6 @@ public external interface Object409 {
   public var value: Boolean
 }
 
-@JsName("T$410")
-public external interface Object410 {
-  @JsName("OutItems")
-  public var outItems: Array<DirectoryItem>
-
-  @JsName("$")
-  public var value: Boolean
-}
-
 @JsName("T$411")
 public external interface Object411 {
   @JsName("OutData")
@@ -2288,7 +2279,7 @@ public open external class JavascriptLibrary(
       uObject: UObject,
       directory: String,
       outItems: Array<DirectoryItem>,
-    ): Object410
+    ): Object569
 
     @JsName("ReadCSV")
     public fun readCsv(
@@ -53166,12 +53157,6 @@ public external interface OutDependencyProvider {
   public var outDependency: String
 }
 
-@JsName("T$463")
-public external interface OutDependenciesProvider {
-  @JsName("OutDependencies")
-  public var outDependencies: Array<String>
-}
-
 @JsName("T$464")
 public external interface Object464 {
   @JsName("AttributeValue")
@@ -57163,12 +57148,6 @@ public open external class JavascriptDetailCustomization(
   }
 }
 
-@JsName("T$495")
-public external interface SurfacesProvider {
-  @JsName("Surfaces")
-  public var surfaces: Array<Number>
-}
-
 @JsName("T$496")
 public external interface Object496 {
   @JsName("Out")
@@ -58828,6 +58807,15 @@ public external interface Object507 {
   public var value: Boolean
 }
 
+@JsName("T$508")
+public external interface Object508 {
+  @JsName("Out")
+  public var out: Array<UObject>
+
+  @JsName("$")
+  public var value: Number
+}
+
 @JsName("T$509")
 public external interface Object509 {
   @JsName("MinX")
@@ -59069,7 +59057,7 @@ public open external class JavascriptEditorLibrary(
     public fun getSourceControlStatusText(): String
 
     @JsName("GetSelectedObjects")
-    public fun getSelectedObjects(uSelection: USelection, out: Array<UObject>): Object705
+    public fun getSelectedObjects(uSelection: USelection, out: Array<UObject>): Object508
 
     @JsName("GetRootWindow")
     public fun getRootWindow(): JavascriptSlateWidget

@@ -48920,6 +48920,12 @@ public external interface ResultsProvider {
   public var results: Array<UObject>
 }
 
+@JsName("T$283")
+public external interface OutUserDataProvider {
+  @JsName("OutUserData")
+  public var outUserData: Array<DatasmithAssetUserData>
+}
+
 @JsName("T$284")
 public external interface Object284 {
   @JsName("Var")
@@ -72981,6 +72987,10 @@ public open external class World(
     @JsName("SetWorldToMetersScale")
     public fun setWorldToMetersScale(worldContext: UObject, newScale: Number): Unit
   }
+}
+
+public external interface EventListenerObject {
+  public fun handleEvent(event: Event): Unit
 }
 
 public typealias UnrealEngineClass = Any

@@ -92,6 +92,12 @@ public open external class GeomSelection {
   }
 }
 
+@JsName("T$528")
+public external interface SurfacesProvider {
+  @JsName("Surfaces")
+  public var surfaces: Array<Number>
+}
+
 public open external class Brush(
   inWorld: World,
   location: Vector,
@@ -10677,6 +10683,24 @@ public open external class GenericStruct {
   }
 }
 
+@JsName("T$569")
+public external interface Object569 {
+  @JsName("OutItems")
+  public var outItems: Array<DirectoryItem>
+
+  @JsName("$")
+  public var value: Boolean
+}
+
+@JsName("T$570")
+public external interface Object570 {
+  @JsName("OutKeys")
+  public var outKeys: Array<String>
+
+  @JsName("OutValues")
+  public var outValues: Array<String>
+}
+
 @JsName("T$571")
 public external interface Object571 {
   @JsName("PropertyValue")
@@ -10819,7 +10843,7 @@ public open external class UObject(
   public open fun hasAnyFlags(flags: Number): Boolean
 
   @JsName("ReadDirectory")
-  public open fun readDirectory(directory: String, outItems: Array<DirectoryItem>): Object410
+  public open fun readDirectory(directory: String, outItems: Array<DirectoryItem>): Object569
 
   @JsName("ReadFile")
   public open fun readFile(filename: String): Boolean
@@ -10855,7 +10879,7 @@ public open external class UObject(
     stringToMatch: String,
     outKeys: Array<String>,
     outValues: Array<String>,
-  ): Object810
+  ): Object570
 
   @JsName("GetDatasmithUserDataValueForKey")
   public open fun getDatasmithUserDataValueForKey(key: String): String
@@ -11272,7 +11296,7 @@ public open external class UObject(
       uObject: UObject,
       directory: String,
       outItems: Array<DirectoryItem>,
-    ): Object410
+    ): Object569
 
     @JsName("ReadFile")
     public fun readFile(uObject: UObject, filename: String): Boolean
@@ -11317,7 +11341,7 @@ public open external class UObject(
       stringToMatch: String,
       outKeys: Array<String>,
       outValues: Array<String>,
-    ): Object810
+    ): Object570
 
     @JsName("GetDatasmithUserDataValueForKey")
     public fun getDatasmithUserDataValueForKey(uObject: UObject, key: String): String
@@ -18945,6 +18969,12 @@ public external object InterchangeNodeContainerType {
 public external interface OutTargetAssetsProvider {
   @JsName("OutTargetAssets")
   public var outTargetAssets: Array<String>
+}
+
+@JsName("T$596")
+public external interface OutDependenciesProvider {
+  @JsName("OutDependencies")
+  public var outDependencies: Array<String>
 }
 
 @JsName("T$597")
@@ -55746,6 +55776,12 @@ public external interface Object642 {
 
   @JsName("$")
   public var value: Boolean
+}
+
+@JsName("T$643")
+public external interface InOutActorsProvider {
+  @JsName("InOutActors")
+  public var inOutActors: Array<Actor>
 }
 
 public open external class DataLayerEditorSubsystem(

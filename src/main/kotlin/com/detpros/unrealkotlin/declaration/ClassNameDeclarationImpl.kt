@@ -64,6 +64,7 @@ internal class ClassNameDeclarationImpl(
 
     override fun rename(name: String) {
         if (!renameable) return
+        if (name.contains(",") || name.contains(" ")) throw IllegalArgumentException("Name cannot contain ',' or ' '.... : $name")
         val oldName = simpleNames.last()
         if (name == oldName) return
         _simpleNames = _simpleNames.dropLast(1) + name

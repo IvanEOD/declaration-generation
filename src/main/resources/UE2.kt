@@ -26455,15 +26455,6 @@ public external object CsgOper {
   public var Max: String
 }
 
-@JsName("T$705")
-public external interface Object705 {
-  @JsName("Out")
-  public var out: Array<UObject>
-
-  @JsName("$")
-  public var value: Number
-}
-
 public open external class USelection(
   outer: UObject,
 ) : UObject {
@@ -26477,7 +26468,7 @@ public open external class USelection(
   public open fun deselectAll(inClass: UnrealEngineClass): Unit
 
   @JsName("GetSelectedObjects")
-  public open fun getSelectedObjects(out: Array<UObject>): Object705
+  public open fun getSelectedObjects(out: Array<UObject>): Object508
 
   @JsName("Select")
   public open fun select(inObject: UObject): Unit
@@ -26516,7 +26507,7 @@ public open external class USelection(
     public fun deselectAll(uSelection: USelection, inClass: UnrealEngineClass): Unit
 
     @JsName("GetSelectedObjects")
-    public fun getSelectedObjects(uSelection: USelection, out: Array<UObject>): Object705
+    public fun getSelectedObjects(uSelection: USelection, out: Array<UObject>): Object508
 
     @JsName("Select")
     public fun select(uSelection: USelection, inObject: UObject): Unit
@@ -31044,12 +31035,6 @@ public external interface Object711 {
 
   @JsName("$")
   public var value: Boolean
-}
-
-@JsName("T$712")
-public external interface InOutActorsProvider {
-  @JsName("InOutActors")
-  public var inOutActors: Array<Actor>
 }
 
 @JsName("T$714")
@@ -44375,12 +44360,6 @@ public open external class ActorPartitionSubsystem(
     @JsName("C")
     public fun copy(other: Any): ActorPartitionSubsystem
   }
-}
-
-@JsName("T$719")
-public external interface ParamsProvider {
-  @JsName("Params")
-  public var params: Array<AudioParameter>
 }
 
 public open external class ActorSoundParameterInterface(

@@ -25349,15 +25349,6 @@ public open external class DatasmithCineCameraComponentTemplate(
   }
 }
 
-@JsName("T$810")
-public external interface Object810 {
-  @JsName("OutKeys")
-  public var outKeys: Array<String>
-
-  @JsName("OutValues")
-  public var outValues: Array<String>
-}
-
 @JsName("T$811")
 public external interface Object811 {
   @JsName("OutObjects")
@@ -25365,12 +25356,6 @@ public external interface Object811 {
 
   @JsName("OutValues")
   public var outValues: Array<String>
-}
-
-@JsName("T$812")
-public external interface OutUserDataProvider {
-  @JsName("OutUserData")
-  public var outUserData: Array<DatasmithAssetUserData>
 }
 
 public open external class DatasmithContentBlueprintLibrary(
@@ -25403,7 +25388,7 @@ public open external class DatasmithContentBlueprintLibrary(
       stringToMatch: String,
       outKeys: Array<String>,
       outValues: Array<String>,
-    ): Object810
+    ): Object570
 
     @JsName("GetDatasmithUserData")
     public fun getDatasmithUserData(uObject: UObject): DatasmithAssetUserData
@@ -68307,8 +68292,4 @@ public open external class NiagaraStackSystemUserParametersGroup(
     @JsName("C")
     public fun copy(other: Any): NiagaraStackSystemUserParametersGroup
   }
-}
-
-public external interface EventListenerObject {
-  public fun handleEvent(event: Event): Unit
 }

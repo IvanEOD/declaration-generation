@@ -298,10 +298,12 @@ unnamedClasses:
       newName: "SkeletalMeshOutBuildOptionsProvider"
     - name: "T$240"
       newName: "MeshOutBuildOptionsProvider"
+    - name: "T$281"
+      newName: "UnrealEngineClassesResultProvider"
     - name: "T$291"
       newName: "AnyParameterNamesProvider"
     - name: "T$414"
-      newName: "UnrealEngineClassesResultProvider"
+      delete: true
     - name: "T$497"
       newName: "StringArrayProvider"
     - name: "T$525"
