@@ -29,6 +29,9 @@ internal class ClassDeclarationImpl(
     companionObject: ClassDeclaration? = null
 ): BaseJsNameDeclaration(), ClassDeclaration, ChildDeclaration  {
     override var _parent: ParentDeclaration? = null
+
+    private val _thisClassName = ClassNameDeclaration.getClassName("ue.$name")
+
     override fun onChildClaimed(declaration: ChildDeclaration) {
     }
 
@@ -231,6 +234,17 @@ internal class ClassDeclarationImpl(
 
 
     private var _typeSpec: TypeSpec? = null
+
+    override fun rename(name: String) {
+        _thisClassName.rename(name)
+        super.rename(name)
+
+    }
+
+    override fun lockRenaming() {
+        (_thisClassName as ClassNameDeclarationImpl).lockRenaming()
+        super.lockRenaming()
+    }
 
     override fun toTypeSpec(): TypeSpec {
         if (_typeSpec == null) _typeSpec = when (_kind) {

@@ -15,7 +15,7 @@ internal class ClassNameDeclarationImpl(
     simpleNames: List<String>,
     annotations: Set<AnnotationDeclaration> = emptySet(),
     nullable: Boolean = false,
-    private val renameable: Boolean = true,
+    private var renameable: Boolean = true,
 ): ClassNameDeclaration {
     private var _packageName: String = packageName
     private var _simpleNames = simpleNames.toList()
@@ -58,6 +58,10 @@ internal class ClassNameDeclarationImpl(
         members.forEach(Declaration::refresh)
     }
 
+    fun lockRenaming() {
+        renameable = false
+    }
+
     override fun rename(name: String) {
         if (!renameable) return
         val oldName = simpleNames.last()
@@ -87,9 +91,12 @@ internal class ClassNameDeclarationImpl(
         private val renameData = RenameData()
         private val classNames = mutableMapOf<ClassName, ClassNameDeclaration>()
 
-        fun renameClass(oldName: String, newName: String) {
+        fun renameClass(oldName: String, newName: String, lock: Boolean = false) {
             renameData[oldName] = newName
-            classNames.values.asSequence().filter { it.simpleName == oldName }.forEach { it.rename(newName) }
+            classNames.values.asSequence().filter { it.simpleName == oldName }.forEach {
+                it.rename(newName)
+                if (lock) (it as ClassNameDeclarationImpl).lockRenaming()
+            }
         }
 
         fun getUpdatedName(name: String): String = renameData[name]

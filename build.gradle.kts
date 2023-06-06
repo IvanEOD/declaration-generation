@@ -22,6 +22,7 @@ dependencies {
     implementation("com.squareup:kotlinpoet:1.13.2")
     implementation("net.pearx.kasechange:kasechange-jvm:1.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.1")
+
 }
 
 tasks.withType<KotlinCompile<*>> {
