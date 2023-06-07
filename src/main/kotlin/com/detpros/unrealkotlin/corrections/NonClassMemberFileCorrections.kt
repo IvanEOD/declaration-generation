@@ -27,7 +27,7 @@ class NonClassMemberFileCorrections(
 
         allTypeAliases.forEach {
             val newName = typeAliasRenames[it.name]
-            if (newName != null) it.rename(newName)
+            if (newName != null) it.rename("allTypeAliasesRename", newName)
 //            if (it.name == "timeout_handle") it.rename("TimeoutHandle")
             it.lockRenaming()
             environment.addFileNonClass(it)
@@ -37,7 +37,7 @@ class NonClassMemberFileCorrections(
             if (it.name == "setTimeout") {
                 it.parameters.forEach { parameter ->
                     if (parameter.name == "fn") {
-                        parameter.rename("function")
+                        parameter.rename("allFunctionsRename", "function")
                         parameter.lockRenaming()
                     }
                 }
@@ -48,7 +48,7 @@ class NonClassMemberFileCorrections(
 
         allProperties.forEach {
             val newName = propertyRenames[it.name]
-            if (newName != null) it.rename(newName)
+            if (newName != null) it.rename("allPropertiesRename", newName)
 //            if (it.name == "process") it.rename("GProcess")
 //            if (it.name == "memory") it.rename("GMemory")
             if (it.name != "Root" && it.type.toString() != "dynamic") {

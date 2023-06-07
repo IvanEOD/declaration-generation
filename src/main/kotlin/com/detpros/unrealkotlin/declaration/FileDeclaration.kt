@@ -22,7 +22,7 @@ sealed interface FileDeclaration : DeclarationWithAnnotations, DeclarationWithNa
     fun isSameAs(other: FileDeclaration): Boolean
     fun isSameAs(other: FileSpec): Boolean
 
-    override fun rename(name: String)
+    override fun rename(caller: String, name: String)
     override fun lockRenaming()
     fun addDeclaration(declaration: Declaration)
     fun addClass(klass: ClassDeclaration)

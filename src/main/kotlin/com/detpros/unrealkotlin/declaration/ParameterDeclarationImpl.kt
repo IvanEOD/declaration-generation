@@ -31,7 +31,7 @@ internal class ParameterDeclarationImpl(
     override val members: Set<Declaration> get() = annotations + type
 
     override fun isVariableType(): Boolean = type is TypeVariableNameDeclaration
-    override fun rename(name: String) {
+    override fun rename(caller: String, name: String) {
         _name = name
     }
 

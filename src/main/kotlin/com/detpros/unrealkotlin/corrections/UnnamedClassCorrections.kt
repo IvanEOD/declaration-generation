@@ -63,7 +63,7 @@ class UnnamedClassCorrections(
                 if (definedName == null) definedName = first.name.replace("T$", "Object")
 
                 classes.forEach klassForEach@ { klass ->
-                    klass.rename(definedName)
+                    klass.rename("unnamedClassRename", definedName)
                     klass.lockRenaming()
                     if (klass != first) {
                         environment.addIgnoreClass(klass)
@@ -74,15 +74,15 @@ class UnnamedClassCorrections(
                     fun correctFunction(member: FunctionDeclaration) {
                         if (member.name in ignorePropertyNames) return
                         val rename = memberCorrections[member.name] ?: renameMemberFunctions[member.name]
-                        if (rename != null) member.rename(rename)
+                        if (rename != null) member.rename("standardClassFunctionCorrections",  rename)
                         else {
                             val newName = member.name.replaceAnyCommonPrefixes().toMemberLevel()
-                            member.rename(newName)
+                            member.rename("standardClassFunctionElseCorrections", newName)
                         }
                         member.lockRenaming()
                         member.members.filterIsInstance<ParameterDeclaration>().forEach {
                             val parameterName = it.name.toMemberLevel()
-                            it.rename(parameterName)
+                            it.rename("standardClassFunctionParameterCorrections", parameterName)
                             it.lockRenaming()
                         }
                     }
@@ -90,10 +90,10 @@ class UnnamedClassCorrections(
                     fun correctProperty(member: PropertyDeclaration) {
                         if (member.name !in ignoreFunctionNames) {
                             val rename = memberCorrections[member.name] ?: renameMemberProperties[member.name]
-                            if (rename != null) member.rename(rename)
+                            if (rename != null) member.rename("standardClassPropertyCorrections", rename)
                             else {
                                 val newName = member.name.replaceAnyCommonPrefixes().toMemberLevel()
-                                member.rename(newName)
+                                member.rename("standardClassPropertyElseCorrections", newName)
                             }
                         }
                         member.lockRenaming()

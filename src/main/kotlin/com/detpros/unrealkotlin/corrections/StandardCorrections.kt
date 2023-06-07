@@ -54,7 +54,7 @@ class StandardCorrections(
             if (isIgnore(klass)) return
             with(klass) {
                 val newName = definedClassRenames[name] ?: name.toTopLevel()
-                if (name != newName) rename(newName)
+                if (name != newName) rename("standardClassCorrections", newName)
                 addFinishedClass(this)
                 members.forEach membersForEach@ { member ->
                     when (member) {
@@ -93,15 +93,15 @@ class StandardCorrections(
         }
         var rename = renameMap[declaration.name] ?: renameMemberFunctions[declaration.name]
         if (rename == "new" && parent != null && parent is ClassDeclaration && !parent.isCompanion) rename = "C"
-        if (rename != null) declaration.rename(rename)
+        if (rename != null) declaration.rename("standardClassFunctionCorrections", rename)
         else {
             val newName = declaration.name.replaceAnyCommonPrefixes().toMemberLevel()
-            declaration.rename(newName)
+            declaration.rename("standardClassFunctionElseCorrections", newName)
         }
         declaration.lockRenaming()
         declaration.members.filterIsInstance<ParameterDeclaration>().forEach {
             val parameterName = it.name.toMemberLevel()
-            it.rename(parameterName)
+            it.rename("standardClassFunctionParameterCorrections", parameterName)
             it.lockRenaming()
         }
     }
@@ -121,10 +121,10 @@ class StandardCorrections(
         }
         if (declaration.name !in ignorePropertyNames) {
             val rename = renameMap[declaration.name] ?: renameMemberProperties[declaration.name]
-            if (rename != null) declaration.rename(rename)
+            if (rename != null) declaration.rename("standardClassPropertyCorrections", rename)
             else {
                 val newName = declaration.name.replaceAnyCommonPrefixes().toMemberLevel()
-                declaration.rename(newName)
+                declaration.rename("standardClassPropertyElseCorrections", newName)
             }
         }
         declaration.lockRenaming()
@@ -134,7 +134,7 @@ class StandardCorrections(
     private fun correctTypeAlias(declaration: TypeAliasDeclaration) {
         if (environment.isIgnore(declaration)) return
         val newName = declaration.name.toMemberLevel()
-        if (declaration.name != newName && !environment.isIgnore(declaration)) declaration.rename(newName)
+        if (declaration.name != newName && !environment.isIgnore(declaration)) declaration.rename("standardTypeAliasCorrections", newName)
         declaration.lockRenaming()
     }
 

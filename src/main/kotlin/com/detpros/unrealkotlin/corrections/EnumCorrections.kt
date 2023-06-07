@@ -24,14 +24,14 @@ class EnumCorrections(
         enumRenames.forEach { (oldName, newName) ->
             val entries = entryRenames[newName] ?: mapOf()
             val declaration = files.getClass(oldName) ?: return@forEach
-            declaration.rename(newName)
+            declaration.rename("enumRenames", newName)
             declaration.lockRenaming()
             declaration.properties.forEach propertiesForEach@ { property ->
                 val newPropertyName = entries[property.name]
                 if (newPropertyName == null) {
                     val name = property.name.toTopLevel()
-                    if (name != property.name) property.rename(name)
-                } else if (property.name != newPropertyName) property.rename(newPropertyName)
+                    if (name != property.name) property.rename("enumRenamesProperty", name)
+                } else if (property.name != newPropertyName) property.rename("enumRenamesElseProperty", newPropertyName)
 
                 property.lockRenaming()
             }

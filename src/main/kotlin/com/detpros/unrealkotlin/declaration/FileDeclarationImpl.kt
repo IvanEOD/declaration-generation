@@ -64,7 +64,7 @@ internal class FileDeclarationImpl(
 
     override val isRenamingLocked: Boolean get() = _renamingLocked
 
-    override fun rename(name: String) {
+    override fun rename(caller: String, name: String) {
         _name = name
     }
 

@@ -60,7 +60,7 @@ class TypeAliasDeclarationImpl(
         _modifiers.remove(modifier)
     }
 
-    override fun rename(name: String) {
+    override fun rename(caller: String, name: String) {
         if (_lockedRenaming) return
         val oldName = _name
         _name = name
