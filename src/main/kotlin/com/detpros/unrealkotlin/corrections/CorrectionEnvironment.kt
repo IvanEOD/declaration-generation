@@ -190,20 +190,18 @@ class CorrectionEnvironment(
         files.asSequence()
             .flatMap { it.classes.filter { klass -> klass.name in mediaSources } }
             .forEach { klass ->
+
                 val removeFunctions = klass.functions.filter { function -> function.hasTypeVariables() }
-                removeFunctions.forEach { function ->
-                    klass.removeFunction(function)
-                }
-                klass.functions.forEach { function ->
-                    function.removeModifier(KModifier.OVERRIDE)
-                }
+                removeFunctions.forEach { function -> klass.removeFunction(function) }
+                klass.functions.forEach { function -> function.removeModifier(KModifier.OVERRIDE) }
             }
 
         val deleteClassNames = configuration.classConfigurations().filter { it.delete }.map { it.name }
         val deleteClasses = files.flatMap { it.classes }.filter { it.originalName in deleteClassNames }.toList()
-        files.forEach { file ->
-            deleteClasses.forEach { file.removeClass(it) }
-        }
+        files.forEach { file -> deleteClasses.forEach { file.removeClass(it) } }
+
+
+//        ClassNameDeclaration.setPackageToUE("UEnum")
 
         writeFiles(sourceDestination)
 //
