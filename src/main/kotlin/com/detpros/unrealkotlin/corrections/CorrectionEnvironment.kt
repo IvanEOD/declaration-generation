@@ -200,6 +200,7 @@ class CorrectionEnvironment(
         val deleteClasses = files.flatMap { it.classes }.filter { it.originalName in deleteClassNames }.toList()
         files.forEach { file -> deleteClasses.forEach { file.removeClass(it) } }
 
+        checkForErrors()
 
 //        ClassNameDeclaration.setPackageToUE("UEnum")
 
@@ -277,6 +278,81 @@ class CorrectionEnvironment(
     fun safeRemoveUnderscores(value: String): String =
         if (value in doNotRemoveUnderscores) value
         else value.replace("_", "")
+
+
+
+
+    private fun checkForErrors() {
+
+        checkForPropertyNameConflicts()
+
+    }
+
+
+    private fun checkForPropertyNameConflicts() {
+        val duplicateProperties = mutableMapOf<String, MutableSet<String>>()
+
+        files.asSequence()
+            .flatMap(Declaration::members)
+            .filterIsInstance<ClassDeclaration>()
+            .forEach { klass ->
+                val names = mutableSetOf<String>()
+                val (added, duplicates) = klass.properties.partition { names.add(it.name) }
+                if (duplicates.isNotEmpty()) duplicateProperties.getOrPut(klass.name) { mutableSetOf() } += duplicates.map(PropertyDeclaration::name)
+            }
+
+        println("Property name conflicts:")
+        duplicateProperties.forEach { (className, properties) ->
+            println("Class $className: ${properties.joinToString(", ")}")
+        }
+
+    }
+
+
+    data class ClassProgress(
+        val klass: ClassDeclaration,
+        var nameComplete: Boolean = false,
+        val completedProperties: MutableSet<PropertyDeclaration> = mutableSetOf(),
+        val completedFunctions: MutableSet<FunctionDeclaration> = mutableSetOf(),
+    ) {
+        fun nameComplete() {
+            if (nameComplete) return
+            klass.lockRenaming()
+            nameComplete = true
+        }
+        fun rename(name: String) {
+            if (nameComplete) return
+            klass.rename("classProgress", name)
+            klass.lockRenaming()
+            nameComplete = true
+        }
+
+        fun properties(block: PropertyDeclaration.() -> Boolean) {
+            klass.properties.filter { it !in completedProperties }.forEach {
+                if (it.block()) completedProperties += it
+            }
+        }
+
+        fun functions(block: FunctionDeclaration.() -> Boolean) {
+            klass.functions.filter { it !in completedFunctions }.forEach {
+                if (it.block()) completedFunctions += it
+            }
+        }
+
+        fun members(block: DeclarationWithJsName.() -> Boolean) {
+            functions(block)
+            properties(block)
+        }
+
+
+
+        val hasIncompleteProperties get() = completedProperties.size != klass.properties.size
+        val hasIncompleteFunctions get() = completedFunctions.size != klass.functions.size
+        val hasIncompleteMembers get() = hasIncompleteProperties || hasIncompleteFunctions
+        val isNameComplete get() = nameComplete
+
+        val isComplete get() = isNameComplete && !hasIncompleteMembers
+    }
 
 
     companion object {

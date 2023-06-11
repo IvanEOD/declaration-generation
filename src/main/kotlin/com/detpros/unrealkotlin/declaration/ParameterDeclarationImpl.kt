@@ -14,8 +14,8 @@ import com.squareup.kotlinpoet.ParameterSpec
 internal class ParameterDeclarationImpl(
     name: String,
     type: TypeNameDeclaration,
-    modifiers: Collection<KModifier>,
-    annotations: Collection<AnnotationDeclaration>,
+    modifiers: Collection<KModifier> = emptySet(),
+    annotations: Collection<AnnotationDeclaration> = emptySet(),
 ): ParameterDeclaration, ChildDeclaration {
     private var _lockedRenaming = false
     private var _name = name

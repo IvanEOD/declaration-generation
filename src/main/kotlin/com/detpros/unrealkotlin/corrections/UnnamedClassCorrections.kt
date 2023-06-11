@@ -71,6 +71,8 @@ class UnnamedClassCorrections(
                     }
                     val memberCorrections = definedMemberRenames[definedName] ?: mapOf()
 
+
+
                     fun correctFunction(member: FunctionDeclaration) {
                         if (member.name in ignorePropertyNames) return
                         val rename = memberCorrections[member.name] ?: renameMemberFunctions[member.name]

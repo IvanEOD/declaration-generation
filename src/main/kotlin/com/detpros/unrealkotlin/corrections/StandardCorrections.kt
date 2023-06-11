@@ -26,6 +26,9 @@ class StandardCorrections(
     private val renameMemberProperties by lazy { configuration.definedPropertyRenames() }
     private val renameMemberFunctions by lazy { configuration.definedFunctionRenames() }
 
+    private fun getClassConfig(klass: ClassDeclaration) = configuration.classConfigurations()
+        .firstOrNull { it.name == klass.originalName }
+
     fun internalCorrect(parent: Declaration? = null, declarations: Set<Declaration>) {
         declarations.forEach {
             when (it) {
@@ -55,6 +58,8 @@ class StandardCorrections(
             with(klass) {
                 val newName = definedClassRenames[name] ?: name.toTopLevel()
                 if (name != newName) rename("standardClassCorrections", newName)
+                val config = getClassConfig(this)
+                config?.correct(klass)
                 addFinishedClass(this)
                 members.forEach membersForEach@ { member ->
                     when (member) {

@@ -27,10 +27,14 @@ dependencies {
 
 tasks.withType<KotlinCompile<*>> {
     kotlinOptions {
+//        allWarningsAsErrors = true
         freeCompilerArgs = freeCompilerArgs + "-Xcontext-receivers=true"
     }
 }
 
+tasks.wrapper {
+    gradleVersion = "8.1.1"
+}
 
 
 tasks.register("pushNextVersion") {

@@ -43,7 +43,7 @@ internal class ClassDeclarationImpl(
 
     private var _kind: TypeSpec.Kind = kind
     private var _companionObject = companionObject
-    private var _superclass = superclass
+    internal var _superclass = superclass
     private val _superinterfaces = superinterfaces.toMutableSet()
     private val _typeVariables = typeVariables.toMutableSet()
     private var _primaryConstructor = constructor

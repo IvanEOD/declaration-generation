@@ -26,14 +26,16 @@ class EnumCorrections(
             val declaration = files.getClass(oldName) ?: return@forEach
             declaration.rename("enumRenames", newName)
             declaration.lockRenaming()
-            declaration.properties.forEach propertiesForEach@ { property ->
-                val newPropertyName = entries[property.name]
-                if (newPropertyName == null) {
-                    val name = property.name.toTopLevel()
-                    if (name != property.name) property.rename("enumRenamesProperty", name)
-                } else if (property.name != newPropertyName) property.rename("enumRenamesElseProperty", newPropertyName)
+            if (entries.isNotEmpty()) {
+                declaration.properties.forEach propertiesForEach@ { property ->
+                    val newPropertyName = entries[property.name]
+                    if (newPropertyName == null) {
+                        val name = property.name.toTopLevel()
+                        if (name != property.name) property.rename("enumRenamesProperty", name)
+                    } else if (property.name != newPropertyName) property.rename("enumRenamesElseProperty", newPropertyName)
 
-                property.lockRenaming()
+                    property.lockRenaming()
+                }
             }
             environment.addEnumClass(declaration)
             counter.incrementAndGet()

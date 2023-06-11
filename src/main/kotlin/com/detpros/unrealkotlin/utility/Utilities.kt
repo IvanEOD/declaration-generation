@@ -106,6 +106,7 @@ fun File.safeResolveFile(name: String): File {
     return file
 }
 
+@OptIn(DelicateCoroutinesApi::class)
 fun <T> debounce(
     waitMs: Long = 300L,
     scope: CoroutineScope = GlobalScope,
@@ -121,6 +122,7 @@ fun <T> debounce(
     }
 }
 
+@OptIn(DelicateCoroutinesApi::class)
 fun <T> throttleFirst(
     skipMs: Long = 300L,
     coroutineScope: CoroutineScope = GlobalScope,
@@ -137,6 +139,7 @@ fun <T> throttleFirst(
     }
 }
 
+@OptIn(DelicateCoroutinesApi::class)
 fun <T> throttleLatest(
     intervalMs: Long = 300L,
     coroutineScope: CoroutineScope = GlobalScope,

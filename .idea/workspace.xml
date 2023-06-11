@@ -4,30 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcb20188-7de8-42f0-a6bd-e096205dde3d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CustomInspectionsConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CustomInspectionsConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinScripting.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/declaration-generation.main.iml" beforeDir="false" />
+    <list default="true" id="1d5e275b-3bfc-41e3-bfaf-9d9134b6ad06" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/Correction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionContext.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/NameCorrection.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/DeclarationType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CustomInspectionsConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionConfiguration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionConfiguration.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionEnvironment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionEnvironment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UE.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UE0.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UE1.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UE2.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UE3.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UE4.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UE5.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/EnumCorrections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/EnumCorrections.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/StandardCorrections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/StandardCorrections.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnnamedClassCorrections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnnamedClassCorrections.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/test.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/ClassDeclarationImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/ClassDeclarationImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/Declaration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/Declaration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/FunctionDeclaration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/FunctionDeclaration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/FunctionDeclarationImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/FunctionDeclarationImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/ParameterDeclarationImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/ParameterDeclarationImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/Utilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/Utilities.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +77,18 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="git" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="declaration-generation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="declaration-generation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -79,33 +99,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2Qxz48w3Lk2u80DfKebtFMuINud" />
+  <component name="ProjectId" id="2R49QDCigrbOmpvNnmza4Yr46Ym" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
-    <option name="autoscrollToSource" value="true" />
     <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.49056605",
-    "settings.editor.selected.configurable": "configurable.group.editor",
+    "settings.editor.selected.configurable": "com.dsoftware.ghmanager.ui.settings.GhActionsManagerConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.declaration-generation [pushNextVersion]">
+  <component name="RunManager" selected="Kotlin.TestKt">
     <configuration name="declaration-generation [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -172,28 +191,61 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="declaration-generation [pushRelease]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="pushRelease" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.detpros.unrealkotlin.corrections.TestKt" />
+      <module name="declaration-generation.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.declaration-generation [pushNextVersion]" />
+        <item itemvalue="Kotlin.TestKt" />
         <item itemvalue="Gradle.declaration-generation [build]" />
         <item itemvalue="Gradle.declaration-generation [clean]" />
+        <item itemvalue="Gradle.declaration-generation [pushRelease]" />
+        <item itemvalue="Gradle.declaration-generation [pushNextVersion]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bcb20188-7de8-42f0-a6bd-e096205dde3d" name="Changes" comment="" />
-      <created>1683393234827</created>
+      <changelist id="1d5e275b-3bfc-41e3-bfaf-9d9134b6ad06" name="Changes" comment="" />
+      <created>1686498474751</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1683393234827</updated>
-      <workItem from="1686309833446" duration="1189000" />
-      <workItem from="1686319685767" duration="830000" />
+      <updated>1686498474751</updated>
+      <workItem from="1686498476629" duration="3204000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

@@ -26,7 +26,7 @@ internal class FunctionDeclarationImpl(
 ): BaseJsNameDeclaration(), FunctionDeclaration, ChildDeclaration {
 
     private var _receiverType = receiverType
-    private var _returnType = returnType
+    internal var _returnType = returnType
     private val _typeVariables = typeVariables.toMutableSet()
     private val _parameters = parameters.toMutableSet()
     private var _delegateConstructor = delegateConstructor
@@ -74,7 +74,24 @@ internal class FunctionDeclarationImpl(
 
     }
 
+    override fun hasParameters(): Boolean = parameters.isNotEmpty()
 
+    override fun addParameter(declaration: ParameterDeclaration) {
+        _parameters.add(declaration)
+    }
+
+    override fun addParameter(name: String, type: TypeNameDeclaration) {
+        _parameters.add(ParameterDeclarationImpl(name, type))
+    }
+
+    override fun deleteParameter(name: String) {
+        _parameters.removeIf { it.name == name }
+    }
+
+    override fun changeParameterName(name: String, newName: String) {
+        val parameter = parameters.find { it.name == name } ?: return
+        parameter.rename("functionChangeParameterName", newName)
+    }
 
     override fun setModifiers(modifiers: Collection<KModifier>) {
         _modifiers.clear()

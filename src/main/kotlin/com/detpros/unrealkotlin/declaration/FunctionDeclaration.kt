@@ -20,6 +20,11 @@ sealed interface FunctionDeclaration : DeclarationWithJsName, DeclarationWithMod
     fun hasTypeVariables(): Boolean
     fun removeTypeVariables()
 
+    fun hasParameters(): Boolean
+    fun addParameter(declaration: ParameterDeclaration)
+    fun addParameter(name: String, type: TypeNameDeclaration)
+    fun deleteParameter(name: String)
+    fun changeParameterName(name: String, newName: String)
     fun changeParameterType(name: String, type: TypeNameDeclaration)
     fun changeParameterType(name: String, type: String)
 

@@ -17,6 +17,7 @@ lateinit var context: ParsingContext
 fun main() {
 
     val sourceDir = File("C:\\Users\\ivanc\\OneDrive\\Desktop\\unreal-kotlin\\build\\.unreal-kotlin\\generated\\dukat")
+//    val sourceDir = File("G:\\Games\\UnrealKt\\unreal-kotlin\\build\\.unreal-kotlin\\generated\\dukat")
     val sourceFiles = sourceDir.listFiles()!!.filter { it.extension == "kt" }.toSet()
     val outputDirectory = File("src/main/resources")
 
