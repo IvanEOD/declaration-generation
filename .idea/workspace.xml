@@ -92,7 +92,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.declaration-generation [pushNextVersion]">
+  <component name="RunManager" selected="Gradle.declaration-generation [wrapper]">
     <configuration name="declaration-generation [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -115,7 +115,7 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="declaration-generation [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="declaration-generation [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -126,7 +126,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value="init" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -159,7 +159,7 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="declaration-generation [pushRelease]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="declaration-generation [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -170,7 +170,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="pushRelease" />
+            <option value="wrapper" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -190,11 +190,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.declaration-generation [wrapper]" />
+        <item itemvalue="Gradle.declaration-generation [init]" />
         <item itemvalue="Gradle.declaration-generation [pushNextVersion]" />
         <item itemvalue="Kotlin.TestKt" />
         <item itemvalue="Gradle.declaration-generation [build]" />
-        <item itemvalue="Gradle.declaration-generation [clean]" />
-        <item itemvalue="Gradle.declaration-generation [pushRelease]" />
       </list>
     </recent_temporary>
   </component>
