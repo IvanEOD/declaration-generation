@@ -1,10 +1,8 @@
 package com.detpros.unrealkotlin.corrections
 
 import com.detpros.unrealkotlin.declaration.*
+import com.detpros.unrealkotlin.utility.*
 import com.detpros.unrealkotlin.utility.GenericClass
-import com.detpros.unrealkotlin.utility.joinNames
-import com.detpros.unrealkotlin.utility.kotlinUE5Text
-import com.detpros.unrealkotlin.utility.toMemberLevel
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
@@ -14,7 +12,10 @@ import java.io.File
 class CorrectionEnvironment(
     private val sourceDestination: File,
     private val declarations: PackageDeclaration,
-    private val configuration: CorrectionConfiguration
+    private val configuration: CorrectionConfiguration,
+    private val requiredClasses: Set<String> = setOf(),
+    private val includeAllClasses: Boolean = false,
+    private val includeAllEnums: Boolean = true,
 ) {
 
     val enumCorrections = EnumCorrections(this, configuration.enumCorrections)
@@ -205,32 +206,32 @@ class CorrectionEnvironment(
 //        ClassNameDeclaration.setPackageToUE("UEnum")
 
         writeFiles(sourceDestination)
-//
-//        if (!includeAllClasses) {
-//            val classDependencies = files.flatMap(Declaration::allMembers)
-//                .filterIsInstance<ClassDeclaration>().map {
-//                    ClassDependencies(it.name,
-//                        it.allMembers.filterIsInstance<TypeNameDeclaration>().map { type -> type.allNames().last() }
-//                            .toSet()
-//                    )
-//                }.toSet()
-//
-//            val managedDependencies = ManagedDependencies(classDependencies)
-//
-//            val classesToInclude = (includeClasses + minClasses).toMutableSet()
-//            if (includeAllEnums) classesToInclude += EnumCorrections.unrealEnumTypeNames
-//            val requiredClassNames = managedDependencies.getAllDependencies(classesToInclude)
-//
-//            files.asSequence()
-//                .forEach { file ->
-//                    val forRemove = file.classes.filter { it.name !in requiredClassNames }
-//                    forRemove.forEach { file.removeClass(it) }
-//                    file.refresh()
-//                }
-//
-//        }
-//
-//        writeFiles(sourceDestination)
+
+        if (!includeAllClasses) {
+            val classDependencies = files.flatMap(Declaration::allMembers)
+                .filterIsInstance<ClassDeclaration>().map {
+                    ClassDependencies(it.name,
+                        it.allMembers.filterIsInstance<TypeNameDeclaration>().map { type -> type.allNames().last() }
+                            .toSet()
+                    )
+                }.toSet()
+
+            val managedDependencies = ManagedDependencies(classDependencies)
+
+            val classesToInclude = (requiredClasses + minClasses).toMutableSet()
+            if (includeAllEnums) classesToInclude += EnumCorrections.unrealEnumTypeNames
+            val requiredClassNames = managedDependencies.getAllDependencies(classesToInclude)
+
+            files.asSequence()
+                .forEach { file ->
+                    val forRemove = file.classes.filter { it.name !in requiredClassNames }
+                    forRemove.forEach { file.removeClass(it) }
+                    file.refresh()
+                }
+
+        }
+
+        writeFiles(sourceDestination)
 
     }
 
@@ -364,6 +365,11 @@ class CorrectionEnvironment(
             "_part_3_ue" to "UE3",
             "_part_4_ue" to "UE4",
         )
+
+        private val minClasses = setOf("UObject", "KotlinObject")
+
+
+
 
     }
 
