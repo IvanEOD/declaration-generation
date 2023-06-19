@@ -51,9 +51,7 @@ class NonClassMemberFileCorrections(
             if (newName != null) it.rename("allPropertiesRename", newName)
 //            if (it.name == "process") it.rename("GProcess")
 //            if (it.name == "memory") it.rename("GMemory")
-            if (it.name != "Root" && it.type.toString() != "dynamic") {
-                environment.addFileNonClass(it)
-            }
+            if (it.name != "Root" && it.type.toString() != "dynamic") environment.addFileNonClass(it)
             it.lockRenaming()
         }
 

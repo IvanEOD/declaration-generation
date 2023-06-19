@@ -1,5 +1,8 @@
 package com.detpros.unrealkotlin.corrections
 
+import com.detpros.unrealkotlin.configuration.Configuration
+import com.detpros.unrealkotlin.configuration.builders
+import com.detpros.unrealkotlin.corrections.dsl.*
 import com.detpros.unrealkotlin.declaration.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
@@ -14,13 +17,17 @@ import java.net.URL
  * @author IvanEOD ( 6/5/2023 at 10:04 AM EST )
  */
 
+sealed interface ICorrectionConfiguration<T : ICorrectionConfiguration<T, B>, B : ICorrectionConfigurationBuilder<T, B>> :
+    Configuration<T, B> {
+    override fun toBuilder(): B
+}
 
 data class CorrectionConfiguration(
     val enumCorrections: EnumCorrectionsConfiguration = EnumCorrectionsConfiguration(),
     val nonClassMemberCorrections: NonClassMemberCorrectionsConfiguration = NonClassMemberCorrectionsConfiguration(),
     val standardCorrections: StandardCorrectionsConfiguration = StandardCorrectionsConfiguration(),
     val unnamedClasses: UnnamedClassesConfiguration = UnnamedClassesConfiguration()
-) : ClassConfigurationsProvider {
+) : ClassConfigurationsProvider, ICorrectionConfiguration<CorrectionConfiguration, CorrectionConfigurationBuilder> {
 
     override fun classConfigurations(): List<ClassCorrectionConfiguration> =
         enumCorrections.classConfigurations() +
@@ -33,6 +40,13 @@ data class CorrectionConfiguration(
             standardCorrections + other.standardCorrections,
             unnamedClasses + other.unnamedClasses
         )
+
+    override fun toBuilder() = CorrectionConfigurationBuilder(
+        enumCorrections.toBuilder(),
+        nonClassMemberCorrections.toBuilder(),
+        standardCorrections.toBuilder(),
+        unnamedClasses.toBuilder()
+    )
 
     companion object {
 
@@ -69,12 +83,14 @@ data class CorrectionConfiguration(
 
 data class EnumCorrectionsConfiguration(
     val classes: List<ClassCorrectionConfiguration> = emptyList(),
-) : ClassConfigurationsProvider {
+) : ClassConfigurationsProvider, ICorrectionConfiguration<EnumCorrectionsConfiguration, EnumConfigurationBuilder> {
     override fun classConfigurations(): List<ClassCorrectionConfiguration> = if (this == Default) classes
     else Default.classes + classes
 
     operator fun plus(other: EnumCorrectionsConfiguration) =
         EnumCorrectionsConfiguration(classes + other.classes)
+
+    override fun toBuilder() = EnumConfigurationBuilder(classes.builders())
 
     companion object {
         val Default by lazy { CorrectionConfiguration.Default.enumCorrections }
@@ -85,7 +101,7 @@ data class EnumCorrectionsConfiguration(
 data class NonClassMemberCorrectionsConfiguration(
     val typeAliasRenames: Map<String, String> = emptyMap(),
     val propertyRenames: Map<String, String> = emptyMap()
-) {
+) : ICorrectionConfiguration<NonClassMemberCorrectionsConfiguration, NonClassMemberConfigurationBuilder> {
 
     fun typeAliasRenames() = if (this == Default) typeAliasRenames
     else Default.typeAliasRenames + typeAliasRenames
@@ -98,6 +114,8 @@ data class NonClassMemberCorrectionsConfiguration(
             typeAliasRenames + other.typeAliasRenames,
             propertyRenames + other.propertyRenames
         )
+
+    override fun toBuilder() = NonClassMemberConfigurationBuilder(typeAliasRenames, propertyRenames)
 
     companion object {
         val Default by lazy { CorrectionConfiguration.Default.nonClassMemberCorrections }
@@ -113,7 +131,8 @@ data class StandardCorrectionsConfiguration(
     val allMemberProperties: List<PropertyCorrectionConfiguration> = emptyList(),
     val allMembers: List<MemberCorrectionConfiguration> = emptyList(),
     val classes: List<ClassCorrectionConfiguration> = emptyList(),
-) : ClassConfigurationsProvider {
+) : ClassConfigurationsProvider,
+    ICorrectionConfiguration<StandardCorrectionsConfiguration, StandardConfigurationBuilder> {
     override fun classConfigurations(): List<ClassCorrectionConfiguration> = classes()
 
     fun commonPrefixReplacements() = if (this == Default) commonPrefixReplacements
@@ -162,6 +181,16 @@ data class StandardCorrectionsConfiguration(
             classes + other.classes
         )
 
+    override fun toBuilder() = StandardConfigurationBuilder(
+        commonPrefixReplacements,
+        ignoreFunctions,
+        ignoreProperties,
+        allMemberFunctions.builders(),
+        allMemberProperties.builders(),
+        allMembers.builders(),
+        classes.builders()
+    )
+
     companion object {
         val Default by lazy { CorrectionConfiguration.Default.standardCorrections }
         val Empty by lazy { CorrectionConfiguration.Empty.standardCorrections }
@@ -182,6 +211,9 @@ interface ClassConfigurationsProvider {
                 .associate { member -> member.name to member.newName!! }
         }
 
+    fun classConfig(name: String): ClassCorrectionConfiguration? = classConfigurations().find { it.name == name }
+    fun classConfig(declaration: ClassDeclaration) = classConfig(declaration.originalName)
+
     operator fun get(className: String): ClassCorrectionConfiguration? =
         classConfigurations().find { it.name == className }
 
@@ -189,12 +221,17 @@ interface ClassConfigurationsProvider {
 
 data class UnnamedClassesConfiguration(
     val classes: List<ClassCorrectionConfiguration> = emptyList()
-) : ClassConfigurationsProvider {
+) : ClassConfigurationsProvider,
+    ICorrectionConfiguration<UnnamedClassesConfiguration, UnnamedClassesConfigurationBuilder> {
     override fun classConfigurations(): List<ClassCorrectionConfiguration> = if (this == Default) classes
     else Default.classes + classes
 
     operator fun plus(other: UnnamedClassesConfiguration) =
         UnnamedClassesConfiguration(classes + other.classes)
+
+    override fun toBuilder() = UnnamedClassesConfigurationBuilder(classes.builders())
+
+
 
     companion object {
         val Default by lazy { CorrectionConfiguration.Default.unnamedClasses }
@@ -212,16 +249,17 @@ data class ClassCorrectionConfiguration(
     val members: List<MemberCorrectionConfiguration> = emptyList(),
     val functions: List<FunctionCorrectionConfiguration> = emptyList(),
     val properties: List<PropertyCorrectionConfiguration> = emptyList(),
+) : ICorrectionConfiguration<ClassCorrectionConfiguration, ClassConfigurationBuilder> {
+
+    fun functionConfig(name: String): FunctionCorrectionConfiguration? = functions.find { it.name == name }
+    fun propertyConfig(name: String, type: String? = null): PropertyCorrectionConfiguration? = properties.find { it.name == name && (type == null || it.type == type) }
+    fun memberConfig(name: String): MemberCorrectionConfiguration? = members.find { it.name == name }
+    fun functionConfig(declaration: FunctionDeclaration) = functionConfig(declaration.originalName)
+    fun propertyConfig(declaration: PropertyDeclaration) = propertyConfig(declaration.originalName)
+    fun memberConfig(declaration: DeclarationWithName) = memberConfig(declaration.originalName)
 
 
-    ) {
-    fun member(name: String): MemberCorrectionConfiguration? =
-        members.find { it.name == name } ?: functions.find { it.name == name } ?: properties.find { it.name == name }
-
-    fun function(name: String): FunctionCorrectionConfiguration? = functions.find { it.name == name }
-    fun property(name: String): PropertyCorrectionConfiguration? = properties.find { it.name == name }
-
-    private fun ClassDeclaration.isTargetName(): Boolean = originalName == name || originalName == newName
+    private fun ClassDeclaration.isTargetName(): Boolean = originalName == this@isTargetName.name || originalName == newName
     private fun ClassDeclaration.isSuperType(): Boolean = superType != null && hasSuperType(superType)
 
     fun correct(declaration: ClassDeclaration) {
@@ -253,36 +291,39 @@ data class ClassCorrectionConfiguration(
             }
         }
 
-        val declarationFunctions = declaration.functions
-        val declarationProperties = declaration.properties
-
-        functions.forEach { function ->
-            val declarationFunction = declarationFunctions.find { it.originalName == function.name }
-            if (declarationFunction != null) function.correct(declarationFunction)
+        declaration.functions.forEach { function ->
+            val memberConfig = memberConfig(function.originalName)
+            memberConfig?.correct(function)
+            val functionConfig = functionConfig(function.originalName)
+            functionConfig?.correct(function)
         }
-
-        properties.forEach { property ->
-            val declarationProperty = declarationProperties.find { it.originalName == property.name }
-            if (declarationProperty != null) property.correct(declarationProperty)
+        declaration.properties.forEach { property ->
+            val memberConfig = memberConfig(property.originalName)
+            memberConfig?.correct(property)
+            val propertyConfig = propertyConfig(property.originalName, property.type.allNames().lastOrNull())
+            propertyConfig?.correct(property)
         }
-
-        members.forEach { member ->
-            val declarationFunction = declarationFunctions.find { it.originalName == member.name }
-            if (declarationFunction != null) member.correct(declarationFunction)
-            val declarationProperty = declarationProperties.find { it.originalName == member.name }
-            if (declarationProperty != null) member.correct(declarationProperty)
-        }
-
 
     }
 
+    override fun toBuilder() = ClassConfigurationBuilder(
+        name,
+        newName,
+        superType,
+        delete,
+        removeSuperTypes,
+        addSuperTypes,
+        members.builders(),
+        functions.builders(),
+        properties.builders()
+    )
+    
 }
 
-open class MemberCorrectionConfiguration(
-    open val name: String = "",
-    open val newName: String? = null
-) {
-
+sealed class BaseMemberCorrectionConfiguration<T : BaseMemberCorrectionConfiguration<T, B>, B : MemberConfigurationBuilder<T, B>> :
+    ICorrectionConfiguration<T, B> {
+    abstract val name: String
+    abstract val newName: String?
     open fun correct(declaration: DeclarationWithName) {
         if (declaration.originalName == name) {
             if (newName != null) {
@@ -291,7 +332,13 @@ open class MemberCorrectionConfiguration(
             }
         }
     }
+}
 
+open class MemberCorrectionConfiguration(
+    override val name: String = "",
+    override val newName: String? = null
+) : BaseMemberCorrectionConfiguration<MemberCorrectionConfiguration, MemberConfigurationBuilderImpl>() {
+    override fun toBuilder() = MemberConfigurationBuilderImpl(name, newName)
 }
 
 data class FunctionCorrectionConfiguration(
@@ -304,7 +351,7 @@ data class FunctionCorrectionConfiguration(
     val renameParameters: Map<String, String> = emptyMap(),
     val removeParameters: List<String> = emptyList(),
     val addParameters: Map<String, String> = emptyMap(),
-) : MemberCorrectionConfiguration(name, newName) {
+) : BaseMemberCorrectionConfiguration<FunctionCorrectionConfiguration, FunctionConfigurationBuilder>() {
 
     private fun isTarget(declaration: FunctionDeclaration): Boolean {
         if (declaration.originalName != name) return false
@@ -326,6 +373,7 @@ data class FunctionCorrectionConfiguration(
                     if (declaration.isJsNamePresent) declaration.removeJsName()
                 }
             }
+
             false -> if (declaration.isOverride) declaration.removeModifier(KModifier.OVERRIDE)
             else -> {}
         }
@@ -343,6 +391,19 @@ data class FunctionCorrectionConfiguration(
         }
 
     }
+
+    override fun toBuilder() = FunctionConfigurationBuilder(
+        name,
+        newName,
+        returnType,
+        newReturnType,
+        shouldOverride,
+        removeTypeVariables,
+        renameParameters,
+        removeParameters,
+        addParameters
+    )
+
 }
 
 data class PropertyCorrectionConfiguration(
@@ -351,14 +412,13 @@ data class PropertyCorrectionConfiguration(
     val type: String? = null,
     val newType: String? = null,
     val shouldOverride: Boolean? = null
-) : MemberCorrectionConfiguration(name, newName) {
+) : BaseMemberCorrectionConfiguration<PropertyCorrectionConfiguration, PropertyConfigurationBuilder>() {
 
     private fun isTarget(declaration: PropertyDeclaration): Boolean {
         if (declaration.originalName != name) return false
         if (type == null) return true
         return declaration.type.isName(type)
     }
-
     override fun correct(declaration: DeclarationWithName) {
         if (declaration !is PropertyDeclaration) return
         declaration as PropertyDeclarationImpl
@@ -372,8 +432,18 @@ data class PropertyCorrectionConfiguration(
                     if (declaration.isJsNamePresent) declaration.removeJsName()
                 }
             }
+
             false -> if (declaration.isOverride) declaration.removeModifier(KModifier.OVERRIDE)
             else -> {}
         }
     }
+
+    override fun toBuilder() = PropertyConfigurationBuilder(
+        name,
+        newName,
+        type,
+        newType,
+        shouldOverride
+    )
+
 }

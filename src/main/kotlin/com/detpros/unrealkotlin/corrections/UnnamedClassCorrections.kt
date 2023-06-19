@@ -26,14 +26,11 @@ class UnnamedClassCorrections(
     private val definedMemberRenames by lazy { configuration.definedMemberRenames().toMutableMap() }
     private val unrealDefinedClassRenames by lazy { configuration.definedClassRenames() }
 
+    private fun classConfig(declaration: ClassDeclaration) = configuration.classConfig(declaration)
 
     override fun correct(files: Set<FileDeclaration>) {
-
-
         with(environment) {
             _unnamedClasses
-
-
             genericsMap.forEach { (_, classes) ->
                 var definedName: String? = null
                 for (thing in classes) {
@@ -64,13 +61,14 @@ class UnnamedClassCorrections(
 
                 classes.forEach klassForEach@ { klass ->
                     klass.rename("unnamedClassRename", definedName)
+                    val klassConfig = classConfig(klass)
+                    klassConfig?.correct(klass)
                     klass.lockRenaming()
                     if (klass != first) {
                         environment.addIgnoreClass(klass)
                         return@klassForEach
                     }
                     val memberCorrections = definedMemberRenames[definedName] ?: mapOf()
-
 
 
                     fun correctFunction(member: FunctionDeclaration) {
@@ -81,6 +79,7 @@ class UnnamedClassCorrections(
                             val newName = member.name.replaceAnyCommonPrefixes().toMemberLevel()
                             member.rename("standardClassFunctionElseCorrections", newName)
                         }
+                        klassConfig?.functionConfig(member)?.correct(member)
                         member.lockRenaming()
                         member.members.filterIsInstance<ParameterDeclaration>().forEach {
                             val parameterName = it.name.toMemberLevel()
@@ -98,6 +97,7 @@ class UnnamedClassCorrections(
                                 member.rename("standardClassPropertyElseCorrections", newName)
                             }
                         }
+                        klassConfig?.propertyConfig(member)?.correct(member)
                         member.lockRenaming()
                     }
 

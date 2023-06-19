@@ -26,8 +26,12 @@ class StandardCorrections(
     private val renameMemberProperties by lazy { configuration.definedPropertyRenames() }
     private val renameMemberFunctions by lazy { configuration.definedFunctionRenames() }
 
-    private fun getClassConfig(klass: ClassDeclaration) = configuration.classConfigurations()
-        .firstOrNull { it.name == klass.originalName }
+    fun functionConfig(name: String) = configuration.allMemberFunctions().find { it.name == name }
+    fun propertyConfig(name: String) = configuration.allMemberProperties().find { it.name == name }
+    fun classConfig(name: String) = configuration.classConfigurations().find { it.name == name }
+    fun functionConfig(declaration: FunctionDeclaration) = functionConfig(declaration.originalName)
+    fun propertyConfig(declaration: PropertyDeclaration) = propertyConfig(declaration.originalName)
+    fun classConfig(declaration: ClassDeclaration) = classConfig(declaration.originalName)
 
     fun internalCorrect(parent: Declaration? = null, declarations: Set<Declaration>) {
         declarations.forEach {
@@ -58,7 +62,7 @@ class StandardCorrections(
             with(klass) {
                 val newName = definedClassRenames[name] ?: name.toTopLevel()
                 if (name != newName) rename("standardClassCorrections", newName)
-                val config = getClassConfig(this)
+                val config = classConfig(this)
                 config?.correct(klass)
                 addFinishedClass(this)
                 members.forEach membersForEach@ { member ->
@@ -103,6 +107,7 @@ class StandardCorrections(
             val newName = declaration.name.replaceAnyCommonPrefixes().toMemberLevel()
             declaration.rename("standardClassFunctionElseCorrections", newName)
         }
+        functionConfig(declaration)?.correct(declaration)
         declaration.lockRenaming()
         declaration.members.filterIsInstance<ParameterDeclaration>().forEach {
             val parameterName = it.name.toMemberLevel()
@@ -132,6 +137,7 @@ class StandardCorrections(
                 declaration.rename("standardClassPropertyElseCorrections", newName)
             }
         }
+        propertyConfig(declaration)?.correct(declaration)
         declaration.lockRenaming()
 
     }
