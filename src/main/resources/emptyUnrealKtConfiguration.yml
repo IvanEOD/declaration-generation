@@ -9,9 +9,9 @@ standardCorrections:
   commonPrefixReplacements: {}
   ignoreFunctions: []
   ignoreProperties: []
-  allMemberFunctions: []
-  allMemberProperties: []
-  allMembers: []
+  functions: []
+  properties: []
+  members: []
   classes: []
 
 unnamedClasses:
