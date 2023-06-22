@@ -142,13 +142,13 @@ standardCorrections:
   }
   ignoreFunctions: ["ToString"]
   ignoreProperties: []
-  allMemberFunctions:
+  functions:
     - name: "C"
       newName: "copy"
-  allMemberProperties:
+  properties:
     - name: "$"
       newName: "value"
-  allMembers:
+  members:
   classes:
     - name: "KotlinObject"
       newName: "InternalKotlinObject"
