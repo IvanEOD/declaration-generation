@@ -4,48 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d5e275b-3bfc-41e3-bfaf-9d9134b6ad06" name="Changes" comment="update gradle">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/EnumDeclarationsCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/NonClassMemberDeclarationsCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/StandardDeclarationsCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnrealDeclarationsCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnrealUnnamedClassCorrections.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/BaseMemberCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/ClassCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/ClassCorrectionsProvider.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/Correction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/CorrectionBuilderMarker.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/CorrectionMarker.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/CorrectionWithClasses.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/CorrectionWithMembers.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/Corrections.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/FunctionCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/MemberCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/PropertyCorrection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/models/RenameableCorrection.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/configuration/Configuration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/Configuration.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/configuration/ConfigurationBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/ConfigurationBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/configuration/Extensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/Extensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/Correction.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionConfiguration.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionContext.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionEnvironment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/CorrectionEnvironment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/Corrections.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/EnumCorrections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnrealEnumCorrections.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/FileFinalization.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/FileFinalization.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/NameCorrection.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/NonClassMemberFileCorrections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnrealNonClassMemberCorrections.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/StandardCorrections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnrealStandardCorrections.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnnamedClassCorrections.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/UnnamedClassDeclarationsCorrection.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/ClassConfigurationBuilder.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/CorrectionConfigurationBuilder.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/CorrectionConfigurationMarker.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/ICorrectionConfigurationBuilder.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/MemberConfigurationBuilder.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/ClassDeclarationImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/declaration/ClassDeclarationImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/DeclarationGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/utility/DeclarationGenerator.kt" afterDir="false" />
-    </list>
+    <list default="true" id="1d5e275b-3bfc-41e3-bfaf-9d9134b6ad06" name="Changes" comment="update gradle" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -263,7 +222,7 @@
       <workItem from="1687189233892" duration="11081000" />
       <workItem from="1687447597402" duration="38000" />
       <workItem from="1687447751242" duration="132000" />
-      <workItem from="1687448717475" duration="7076000" />
+      <workItem from="1687448717475" duration="7099000" />
     </task>
     <task id="LOCAL-00001" summary="update gradle">
       <created>1686501928928</created>
