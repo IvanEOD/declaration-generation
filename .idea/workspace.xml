@@ -5,16 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5e275b-3bfc-41e3-bfaf-9d9134b6ad06" name="Changes" comment="update gradle">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/ClassConfigurationBuilder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/ConfigurationBuilderWithClasses.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/CorrectionConfigurationBuilder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/CorrectionConfigurationMarker.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/EnumCorrectionConfigurationBuilder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/ICorrectionConfigurationBuilder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/detpros/unrealkotlin/corrections/dsl/MemberConfigurationBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +33,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="declaration-generation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="declaration-generation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="git" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="declaration-generation" type="f1a62948:ProjectNode" />
                 <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
@@ -57,6 +58,7 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -207,7 +209,8 @@
       <updated>1686498474751</updated>
       <workItem from="1686498476629" duration="3811000" />
       <workItem from="1686756664704" duration="39000" />
-      <workItem from="1687189233892" duration="1796000" />
+      <workItem from="1687189233892" duration="11081000" />
+      <workItem from="1687447597402" duration="38000" />
     </task>
     <task id="LOCAL-00001" summary="update gradle">
       <created>1686501928928</created>
