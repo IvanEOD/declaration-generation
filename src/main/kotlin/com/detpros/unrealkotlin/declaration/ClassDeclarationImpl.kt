@@ -38,6 +38,11 @@ internal class ClassDeclarationImpl(
     override fun onChildReleased(declaration: ChildDeclaration) {
     }
 
+    override val dependencyNames: Set<String>
+        get() = allMembers.filterIsInstance<TypeNameDeclaration>()
+                .map { it.allNames().last() }
+                .toSet()
+
     override val isCompanion: Boolean by lazy { hasModifier(KModifier.COMPANION) || originalName == "Companion" }
     override val isEnum: Boolean by lazy { originalName in unrealEnumClassNames }
 
@@ -75,7 +80,8 @@ internal class ClassDeclarationImpl(
     override val modifiers: Set<KModifier> get() = _modifiers
 
     override val members: Set<Declaration> get() = setOfNotNull(_primaryConstructor, _superclass, _companionObject) +
-            _secondaryConstructors + _functions + _properties + _classes + _annotations + _typeVariables + _superinterfaces
+            _annotations + _secondaryConstructors + _functions + _properties + _classes + _annotations +
+            _typeVariables + _superinterfaces
 
     override fun hasSuperType(vararg names: String): Boolean =
         names.any { _superclass.isName(name) || _superinterfaces.any { it.type.isName(name)} }

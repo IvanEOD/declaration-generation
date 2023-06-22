@@ -71,7 +71,6 @@ class UnrealUnnamedClassCorrections(
                     }
                     val memberCorrections = definedMemberRenames[definedName] ?: mapOf()
 
-
                     fun correctFunction(member: FunctionDeclaration) {
                         if (member.name in ignorePropertyNames) return
                         val rename = memberCorrections[member.name] ?: renameMemberFunctions[member.name]
@@ -128,7 +127,7 @@ class UnrealUnnamedClassCorrections(
 
     private fun isNotDefinedClass(name: String): Boolean =
         name !in unrealDefinedClassRenames.values &&
-                name !in unrealDefinedClassRenames.keys &&
-                name !in definedMemberRenames.keys
+        name !in unrealDefinedClassRenames.keys &&
+        name !in definedMemberRenames.keys
 
 }

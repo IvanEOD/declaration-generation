@@ -26,6 +26,8 @@ sealed interface ClassDeclaration : DeclarationWithJsName, DeclarationWithModifi
     val functionsAndProperties: Set<DeclarationWithJsName>
     val classes: Set<ClassDeclaration>
 
+    val dependencyNames: Set<String>
+
     fun isSameAs(other: ClassDeclaration): Boolean
     fun isSameAs(other: TypeSpec): Boolean
 

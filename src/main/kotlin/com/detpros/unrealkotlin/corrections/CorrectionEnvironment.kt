@@ -185,7 +185,6 @@ class CorrectionEnvironment(
             }
         }
 
-
         files.asSequence()
             .flatMap { it.classes.filter { klass -> klass.name in mediaSources } }
             .forEach { klass ->
@@ -203,11 +202,9 @@ class CorrectionEnvironment(
 
         if (!includeAllClasses) {
             val classDependencies = files.flatMap(Declaration::allMembers)
+                .filter { !isIgnore(it) }
                 .filterIsInstance<ClassDeclaration>().map {
-                    ClassDependencies(it.name,
-                        it.allMembers.filterIsInstance<TypeNameDeclaration>().map { type -> type.allNames().last() }
-                            .toSet()
-                    )
+                    ClassDependencies(it.name, it.dependencyNames)
                 }.toSet()
 
             val managedDependencies = ManagedDependencies(classDependencies)
@@ -215,7 +212,6 @@ class CorrectionEnvironment(
             val classesToInclude = (requiredClasses + minClasses).toMutableSet()
             if (includeAllEnums) classesToInclude += UnrealEnumCorrections.unrealEnumTypeNames
             val requiredClassNames = managedDependencies.getAllDependencies(classesToInclude)
-
             files.asSequence()
                 .forEach { file ->
                     val forRemove = file.classes.filter { it.name !in requiredClassNames }
@@ -247,8 +243,6 @@ class CorrectionEnvironment(
         "BaseMediaSource"
     )
 
-
-
     private fun String.capitalizeFirst() = substring(0, 1).uppercase() + substring(1)
 
     val doNotRemoveUnderscores = mutableSetOf<String>()
@@ -256,9 +250,6 @@ class CorrectionEnvironment(
     fun safeRemoveUnderscores(value: String): String =
         if (value in doNotRemoveUnderscores) value
         else value.replace("_", "")
-
-
-
 
     private fun checkForErrors() {
 
@@ -297,8 +288,6 @@ class CorrectionEnvironment(
         )
 
         private val minClasses = setOf("UObject", "KotlinObject")
-
-
 
 
     }

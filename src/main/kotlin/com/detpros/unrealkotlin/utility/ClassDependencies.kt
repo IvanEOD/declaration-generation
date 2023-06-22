@@ -4,9 +4,7 @@ data class ClassDependencies(val name: String, val dependencies: Set<String>)
 data class ManagedDependencies(val dependencies: Set<ClassDependencies>) {
 
     fun getDependencies(name: String): Set<String> = dependencies.find { it.name == name }?.dependencies ?: emptySet()
-
     fun getAllDependencies(name: String): Set<String> = getAllDependencies(setOf(name))
-
     fun getAllDependencies(names: Set<String>): Set<String> = getAllDependencies(emptySet(), names)
 
     private fun getAllDependencies(
