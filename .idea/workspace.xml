@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d5e275b-3bfc-41e3-bfaf-9d9134b6ad06" name="Changes" comment="update gradle" />
+    <list default="true" id="1d5e275b-3bfc-41e3-bfaf-9d9134b6ad06" name="Changes" comment="update gradle">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +34,12 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="declaration-generation" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="declaration-generation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -103,7 +111,7 @@
       <recent name="com.detpros.unrealkotlin.corrections" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.declaration-generation [pushNextVersion]">
+  <component name="RunManager" selected="Gradle.declaration-generation [build]">
     <configuration name="declaration-generation [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -201,11 +209,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.declaration-generation [build]" />
         <item itemvalue="Gradle.declaration-generation [pushNextVersion]" />
         <item itemvalue="Gradle.declaration-generation [wrapper]" />
         <item itemvalue="Gradle.declaration-generation [init]" />
         <item itemvalue="Kotlin.TestKt" />
-        <item itemvalue="Gradle.declaration-generation [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -222,7 +230,8 @@
       <workItem from="1687189233892" duration="11081000" />
       <workItem from="1687447597402" duration="38000" />
       <workItem from="1687447751242" duration="132000" />
-      <workItem from="1687448717475" duration="7178000" />
+      <workItem from="1687448717475" duration="7447000" />
+      <workItem from="1687456515936" duration="381000" />
     </task>
     <task id="LOCAL-00001" summary="update gradle">
       <created>1686501928928</created>
