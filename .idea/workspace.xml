@@ -111,7 +111,7 @@
       <recent name="com.detpros.unrealkotlin.corrections" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.declaration-generation [build]">
+  <component name="RunManager" selected="Gradle.declaration-generation [pushRelease]">
     <configuration name="declaration-generation [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -178,6 +178,28 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="declaration-generation [pushRelease]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="pushRelease" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration name="declaration-generation [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -200,20 +222,13 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="TestKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.detpros.unrealkotlin.corrections.TestKt" />
-      <module name="declaration-generation.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.declaration-generation [pushRelease]" />
         <item itemvalue="Gradle.declaration-generation [build]" />
         <item itemvalue="Gradle.declaration-generation [pushNextVersion]" />
         <item itemvalue="Gradle.declaration-generation [wrapper]" />
         <item itemvalue="Gradle.declaration-generation [init]" />
-        <item itemvalue="Kotlin.TestKt" />
       </list>
     </recent_temporary>
   </component>
