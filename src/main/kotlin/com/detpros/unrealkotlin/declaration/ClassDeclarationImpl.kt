@@ -1,7 +1,7 @@
 package com.detpros.unrealkotlin.declaration
 
 import com.detpros.unrealkotlin.*
-import com.detpros.unrealkotlin.corrections.EnumCorrections
+import com.detpros.unrealkotlin.corrections.UnrealEnumCorrections
 import com.detpros.unrealkotlin.utility.*
 import com.squareup.kotlinpoet.*
 import org.jetbrains.kotlin.utils.addToStdlib.applyIf
@@ -293,7 +293,7 @@ internal class ClassDeclarationImpl(
             companionObject = typeSpec.typeSpecs.firstOrNull(TypeSpec::isCompanion)?.toDeclaration()
         )
 
-        private val unrealEnumClassNames: Set<String> = EnumCorrections.unrealEnumTypeNames
+        private val unrealEnumClassNames: Set<String> = UnrealEnumCorrections.unrealEnumTypeNames
 
     }
 

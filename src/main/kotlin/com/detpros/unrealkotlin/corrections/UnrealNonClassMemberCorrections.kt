@@ -1,5 +1,6 @@
 package com.detpros.unrealkotlin.corrections
 
+import com.detpros.unrealkotlin.corrections.models.Corrections
 import com.detpros.unrealkotlin.declaration.FileDeclaration
 import com.detpros.unrealkotlin.declaration.FunctionDeclaration
 import com.detpros.unrealkotlin.declaration.PropertyDeclaration
@@ -7,13 +8,13 @@ import com.detpros.unrealkotlin.declaration.TypeAliasDeclaration
 
 
 /**
- *  Non Class Member File Corrections
+ *  Unreal Non-Class Member Corrections
  *
  * @author IvanEOD ( 5/26/2023 at 3:13 PM EST )
  */
-class NonClassMemberFileCorrections(
+class UnrealNonClassMemberCorrections(
     override val environment: CorrectionEnvironment,
-    private val configuration: NonClassMemberCorrectionsConfiguration,
+    private val configuration: NonClassMemberDeclarationsCorrection,
 ) : Corrections() {
 
     private val typeAliasRenames by lazy { configuration.typeAliasRenames() }
@@ -58,7 +59,7 @@ class NonClassMemberFileCorrections(
     }
 
     companion object {
-        private val defaults by lazy { NonClassMemberCorrectionsConfiguration.Default }
+        private val defaults by lazy { NonClassMemberDeclarationsCorrection.Default }
     }
 
 }

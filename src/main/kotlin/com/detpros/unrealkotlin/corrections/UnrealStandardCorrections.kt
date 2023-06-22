@@ -1,18 +1,19 @@
 package com.detpros.unrealkotlin.corrections
 
+import com.detpros.unrealkotlin.corrections.models.*
 import com.detpros.unrealkotlin.declaration.*
 import com.detpros.unrealkotlin.utility.toMemberLevel
 import com.detpros.unrealkotlin.utility.toTopLevel
 import com.squareup.kotlinpoet.KModifier
 
 /**
- *  Standard Corrections
+ *  Unreal Standard Corrections
  *
  * @author IvanEOD ( 5/26/2023 at 3:02 PM EST )
  */
-class StandardCorrections(
+class UnrealStandardCorrections(
     override val environment: CorrectionEnvironment,
-    private val configuration: StandardCorrectionsConfiguration,
+    private val configuration: StandardDeclarationsCorrection,
 ) : Corrections() {
     private val processed = mutableSetOf<Declaration>()
     private fun isProcessed(declaration: Declaration) = !processed.add(declaration) || environment.isIgnore(declaration)
@@ -157,8 +158,10 @@ class StandardCorrections(
 
 
 
+
+
     companion object {
-        private val defaults by lazy { StandardCorrectionsConfiguration.Default }
+        private val defaults by lazy { StandardDeclarationsCorrection.Default }
 //
 //
 //        val definedClassRenames = mapOf(

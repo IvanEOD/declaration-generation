@@ -1,20 +1,21 @@
 package com.detpros.unrealkotlin.corrections
 
-
+import com.detpros.unrealkotlin.corrections.models.Corrections
 import com.detpros.unrealkotlin.declaration.*
 import com.detpros.unrealkotlin.utility.joinNames
 import com.detpros.unrealkotlin.utility.toMemberLevel
 import com.detpros.unrealkotlin.utility.toTopLevel
 
+
 /**
- *  Unnamed Class Corrections
+ *  Unreal Unnamed Class Declarations Correction
  *
- * @author IvanEOD ( 5/26/2023 at 3:15 PM EST )
+ * @author IvanEOD ( 6/22/2023 at 12:33 PM EST )
  */
-class UnnamedClassCorrections(
+class UnrealUnnamedClassCorrections(
     override val environment: CorrectionEnvironment,
-    private val standardConfiguration: StandardCorrectionsConfiguration,
-    private val configuration: UnnamedClassesConfiguration,
+    private val standardConfiguration: StandardDeclarationsCorrection,
+    private val configuration: UnnamedClassDeclarationsCorrection,
 ) : Corrections() {
 
     private val ignorePropertyNames by lazy { standardConfiguration.ignorePropertyNames() }
@@ -132,58 +133,5 @@ class UnnamedClassCorrections(
         name !in unrealDefinedClassRenames.values &&
                 name !in unrealDefinedClassRenames.keys &&
                 name !in definedMemberRenames.keys
-
-    companion object {
-
-
-
-
-//        private val unrealDefinedClassRenames = mapOf(
-//            "T$0" to "GuidProvider",
-//            "T$1" to "InitialSeedProvider",
-//            "T$2" to "RandomStreamProvider",
-//            "T$3" to "RotationProvider",
-//            "T$4" to "AxesProvider",
-//            "T$5" to "OrientationAndPositionProvider",
-//            "T$6" to "SpringStateProvider",
-//            "T$9" to "QuatProvider",
-//            "T$11" to "Vector4ComponentsProvider",
-//            "T$12" to "Vector4Provider",
-//            "T$14" to "MatrixProvider",
-//            "T$49" to "StringResultProvider",
-//            "T$83" to "AnimPoseProvider",
-//            "T$91" to "TransformProvider",
-//            "T$125" to "AnimBoneCompressionSettingsProvider",
-//            "T$126" to "AnimBoneCompressionCurveProvider",
-//            "T$143" to "MetaDataProvider",
-//            "T$144" to "MetaDataOfClassProvider",
-//            "T$150" to "OutAnimPoseProvider",
-//            "T$180" to "SkeletalMeshOutBuildOptionsProvider",
-//            "T$240" to "MeshOutBuildOptionsProvider",
-//            "T$291" to "AnyParameterNamesProvider",
-//            "T$414" to "UnrealEngineClassesResultProvider",
-//            "T$497" to "StringArrayProvider",
-//            "T$525" to "JavascriptConnectionParamsProvider",
-//            "T$722" to "NumberValueProvider",
-//            "T$726" to "OutPathValueProvider",
-//            "T$728" to "AnyResultProvider",
-//            "T$729" to "NumberArrayResultProvider",
-//            "T$743" to "InputAxisKeyMappingOutProvider",
-//            "T$745" to "InputActionKeyMappingOutProvider",
-//            "T$832" to "ControlRigControlOutPoseProvider",
-//        )
-//        private val numberValueProvider = mapOf(
-//            "value" to "numberValue",
-//            "Value" to "numberValue",
-//            "$" to "value"
-//        )
-//        private val definedMemberRenames = mutableMapOf(
-//            "MatrixProvider" to mutableMapOf("M" to "matrix"),
-//            "Vector4Provider" to mutableMapOf("A" to "vector4"),
-//            "QuatProvider" to mutableMapOf("Q" to "quat"),
-//            "NumberValueProvider" to numberValueProvider
-//        )
-    }
-
 
 }

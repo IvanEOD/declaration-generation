@@ -1,13 +1,19 @@
 package com.detpros.unrealkotlin.corrections
 
+import com.detpros.unrealkotlin.corrections.models.Corrections
 import com.detpros.unrealkotlin.declaration.ClassDeclaration
 import com.detpros.unrealkotlin.declaration.FileDeclaration
 import com.detpros.unrealkotlin.utility.*
 import java.util.concurrent.atomic.AtomicInteger
 
-class EnumCorrections(
+/**
+ *  Unreal Enum Corrections
+ *
+ * @author IvanEOD ( 5/26/2023 at 3:13 PM EST )
+ */
+class UnrealEnumCorrections(
     override val environment: CorrectionEnvironment,
-    private val configuration: EnumCorrectionsConfiguration
+    private val configuration: EnumDeclarationsCorrection
 ) : Corrections() {
 
     private lateinit var existingClassNames: Set<String>
@@ -146,7 +152,7 @@ class EnumCorrections(
 
 
     companion object {
-        private val defaults by lazy { EnumCorrectionsConfiguration.Default }
+        private val defaults by lazy { EnumDeclarationsCorrection.Default }
 
 //
 //        private val enumClassRenames = mapOf(

@@ -1,4 +1,4 @@
-package com.detpros.unrealkotlin.configuration
+package com.detpros.unrealkotlin.utility
 
 
 /**

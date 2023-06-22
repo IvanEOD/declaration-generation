@@ -3,25 +3,28 @@ package com.detpros.unrealkotlin.corrections
 import com.detpros.unrealkotlin.declaration.*
 import com.detpros.unrealkotlin.utility.*
 import com.detpros.unrealkotlin.utility.GenericClass
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.TypeSpec
 import java.io.File
+
+/**
+ *  Correction Environment
+ *
+ * @author IvanEOD ( 5/26/2023 at 3:13 PM EST )
+ */
 
 class CorrectionEnvironment(
     private val sourceDestination: File,
     private val declarations: PackageDeclaration,
-    private val configuration: CorrectionConfiguration,
+    private val configuration: UnrealDeclarationsCorrection,
     private val requiredClasses: Set<String> = setOf(),
     private val includeAllClasses: Boolean = false,
     private val includeAllEnums: Boolean = true,
 ) {
 
-    val enumCorrections = EnumCorrections(this, configuration.enumCorrections)
-    val nonClassMemberFileCorrections = NonClassMemberFileCorrections(this, configuration.nonClassMemberCorrections)
-    val unnamedClassCorrections = UnnamedClassCorrections(this, configuration.standardCorrections, configuration.unnamedClasses)
-    val standardCorrections = StandardCorrections(this, configuration.standardCorrections)
+    val enumCorrections = UnrealEnumCorrections(this, configuration.enumCorrections)
+    val nonClassMemberFileCorrections = UnrealNonClassMemberCorrections(this, configuration.nonClassMemberCorrections)
+    val unnamedClassCorrections = UnrealUnnamedClassCorrections(this, configuration.standardCorrections, configuration.unnamedClasses)
+    val standardCorrections = UnrealStandardCorrections(this, configuration.standardCorrections)
 
     internal val genericsMap = mutableMapOf<GenericClass, MutableSet<ClassDeclaration>>()
 
@@ -90,9 +93,6 @@ class CorrectionEnvironment(
 
 
     fun process() {
-        addEventListenerObject()
-
-
 
         enumCorrections.correct(declarations.files)
         nonClassMemberFileCorrections.correct(declarations.files)
@@ -202,9 +202,6 @@ class CorrectionEnvironment(
         files.forEach { file -> deleteClasses.forEach { file.removeClass(it) } }
 
         checkForErrors()
-
-//        ClassNameDeclaration.setPackageToUE("UEnum")
-
         writeFiles(sourceDestination)
 
         if (!includeAllClasses) {
@@ -219,7 +216,7 @@ class CorrectionEnvironment(
             val managedDependencies = ManagedDependencies(classDependencies)
 
             val classesToInclude = (requiredClasses + minClasses).toMutableSet()
-            if (includeAllEnums) classesToInclude += EnumCorrections.unrealEnumTypeNames
+            if (includeAllEnums) classesToInclude += UnrealEnumCorrections.unrealEnumTypeNames
             val requiredClassNames = managedDependencies.getAllDependencies(classesToInclude)
 
             files.asSequence()
@@ -253,26 +250,9 @@ class CorrectionEnvironment(
         "BaseMediaSource"
     )
 
+
+
     private fun String.capitalizeFirst() = substring(0, 1).uppercase() + substring(1)
-
-    private fun addEventListenerObject() {
-        val file = files.first()
-
-        val eventListenerObject = ClassDeclaration.fromTypeSpec(
-            TypeSpec.interfaceBuilder("EventListenerObject")
-                .addFunction(
-                    FunSpec.builder("handleEvent")
-                        .addParameter("event", ClassName("org.w3c.dom.events", "Event"))
-                        .build()
-                )
-                .addModifiers(KModifier.EXTERNAL)
-                .build()
-        )
-        file.addClass(eventListenerObject)
-        finishedClasses.add(eventListenerObject)
-
-    }
-
 
     val doNotRemoveUnderscores = mutableSetOf<String>()
 
