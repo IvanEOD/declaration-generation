@@ -50,7 +50,6 @@ data class EnumDeclarationsCorrection(
         override fun build(): EnumDeclarationsCorrection = EnumDeclarationsCorrection(classes.buildAll())
     }
 
-
     companion object {
         val Default by lazy { UnrealDeclarationsCorrection.Default.enumCorrections }
         val Empty by lazy { UnrealDeclarationsCorrection.Empty.enumCorrections }

@@ -119,11 +119,11 @@ class FileFinalization(
         )
 
         private val imports = mapOf(
-            "UE" to setOf("org.w3c.dom.events.Event"),
+            "UE" to setOf(),
             "UE0" to setOf("org.khronos.webgl.ArrayBuffer", "kotlin.js.Console"),
-            "UE1" to setOf("org.w3c.dom.events.Event"),
+            "UE1" to setOf(),
             "UE2" to setOf("org.w3c.dom.AddEventListenerOptions", "org.w3c.dom.EventListenerOptions", "org.w3c.dom.events.EventListener"),
-            "UE3" to setOf("org.w3c.dom.events.Event"),
+            "UE3" to setOf(),
             "UE4" to setOf(),
         )
 

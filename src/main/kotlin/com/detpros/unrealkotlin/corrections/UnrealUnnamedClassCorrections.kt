@@ -121,13 +121,10 @@ class UnrealUnnamedClassCorrections(
         }
     }
 
-
-
     private fun String.replaceAnyCommonPrefixes(): String =
         commonPrefixReplacements.entries.fold(this) { acc, (prefix, replacement) ->
             if (acc.startsWith(prefix)) acc.replaceFirst(prefix, replacement) else acc
         }
-
 
     private fun isNotDefinedClass(name: String): Boolean =
         name !in unrealDefinedClassRenames.values &&

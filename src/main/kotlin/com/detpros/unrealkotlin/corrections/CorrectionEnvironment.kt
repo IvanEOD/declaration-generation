@@ -138,7 +138,6 @@ class CorrectionEnvironment(
                 }
             }
 
-
         ClassNameDeclarationImpl.forEach {
             if (it.packageName.isEmpty() || it.packageName == "tsstdlib") it.setPackage("ue")
         }
@@ -163,7 +162,6 @@ class CorrectionEnvironment(
                     booleanProperty.lockRenaming()
                 }
             }
-
 
         val sharedNames = mutableMapOf<String, MutableSet<ClassDeclaration>>()
         files.asSequence()
@@ -191,7 +189,6 @@ class CorrectionEnvironment(
         files.asSequence()
             .flatMap { it.classes.filter { klass -> klass.name in mediaSources } }
             .forEach { klass ->
-
                 val removeFunctions = klass.functions.filter { function -> function.hasTypeVariables() }
                 removeFunctions.forEach { function -> klass.removeFunction(function) }
                 klass.functions.forEach { function -> function.removeModifier(KModifier.OVERRIDE) }
@@ -201,8 +198,8 @@ class CorrectionEnvironment(
         val deleteClasses = files.flatMap { it.classes }.filter { it.originalName in deleteClassNames }.toList()
         files.forEach { file -> deleteClasses.forEach { file.removeClass(it) } }
 
-        checkForErrors()
-        writeFiles(sourceDestination)
+//        checkForErrors()
+//        writeFiles(sourceDestination)
 
         if (!includeAllClasses) {
             val classDependencies = files.flatMap(Declaration::allMembers)
@@ -288,53 +285,6 @@ class CorrectionEnvironment(
         }
 
     }
-
-
-    data class ClassProgress(
-        val klass: ClassDeclaration,
-        var nameComplete: Boolean = false,
-        val completedProperties: MutableSet<PropertyDeclaration> = mutableSetOf(),
-        val completedFunctions: MutableSet<FunctionDeclaration> = mutableSetOf(),
-    ) {
-        fun nameComplete() {
-            if (nameComplete) return
-            klass.lockRenaming()
-            nameComplete = true
-        }
-        fun rename(name: String) {
-            if (nameComplete) return
-            klass.rename("classProgress", name)
-            klass.lockRenaming()
-            nameComplete = true
-        }
-
-        fun properties(block: PropertyDeclaration.() -> Boolean) {
-            klass.properties.filter { it !in completedProperties }.forEach {
-                if (it.block()) completedProperties += it
-            }
-        }
-
-        fun functions(block: FunctionDeclaration.() -> Boolean) {
-            klass.functions.filter { it !in completedFunctions }.forEach {
-                if (it.block()) completedFunctions += it
-            }
-        }
-
-        fun members(block: DeclarationWithJsName.() -> Boolean) {
-            functions(block)
-            properties(block)
-        }
-
-
-
-        val hasIncompleteProperties get() = completedProperties.size != klass.properties.size
-        val hasIncompleteFunctions get() = completedFunctions.size != klass.functions.size
-        val hasIncompleteMembers get() = hasIncompleteProperties || hasIncompleteFunctions
-        val isNameComplete get() = nameComplete
-
-        val isComplete get() = isNameComplete && !hasIncompleteMembers
-    }
-
 
     companion object {
         private val fileNames = mapOf(

@@ -44,8 +44,6 @@ data class UnnamedClassDeclarationsCorrection(
         override fun build(): UnnamedClassDeclarationsCorrection = UnnamedClassDeclarationsCorrection(classes.buildAll())
     }
 
-
-
     companion object {
         val Default by lazy { UnrealDeclarationsCorrection.Default.unnamedClasses }
         val Empty by lazy { UnrealDeclarationsCorrection.Empty.unnamedClasses }

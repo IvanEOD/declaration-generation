@@ -54,10 +54,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
         <option value="Kotlin Annotation" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -222,7 +222,7 @@
       <workItem from="1687189233892" duration="11081000" />
       <workItem from="1687447597402" duration="38000" />
       <workItem from="1687447751242" duration="132000" />
-      <workItem from="1687448717475" duration="7099000" />
+      <workItem from="1687448717475" duration="7178000" />
     </task>
     <task id="LOCAL-00001" summary="update gradle">
       <created>1686501928928</created>
